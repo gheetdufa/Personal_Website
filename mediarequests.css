@@ -1,9 +1,0 @@
- @media screen and (max-width: 1200px) {
-    #navigation_bar{
-        /* when the screen size is lower than set resolution, wont display */
-        display: none;
-    }
-    #hamburger_nav{
-        display: flex;
-    }
- }
