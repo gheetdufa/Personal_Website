@@ -433,7 +433,7 @@ main {
 /* ABOUT SECTION */
 
 #about {
-  padding-top: 5rem;
+  padding-top: 2rem;
   position: relative;
 }
 
@@ -447,7 +447,7 @@ main {
 
 #about .section-container {
   display: flex; /* Use flexbox for the container */
-  padding-top: 5rem;
+  padding-top: 2rem;
   align-items: center; /* Align items vertically center */
 }
 
@@ -473,11 +473,11 @@ main {
 
 .about-pic {
   border-radius: 1rem;
-  height: auto; /* Maintain aspect ratio */
+  height: 40vh; /* Maintain aspect ratio */
 }
 
 .details-container {
-  padding: 1.5rem;
+  padding: 0.7rem;
   flex: 1;
   background: white;
   border-radius: 2rem;
@@ -502,7 +502,7 @@ main {
 
 #experience {
   padding-right: 4rem;
-  padding-top: 5rem;
+  padding-top: 2rem;
   position: relative;
 }
 
@@ -527,8 +527,17 @@ main {
 }
 
 #experience .experience-details-container {
-padding-top: 10rem;
+padding-top: 2rem;
 }
+
+#experience .about-containers {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 
 .article-container {
   display: flex;
@@ -564,6 +573,14 @@ article .icon {
   align-items: center; /* Center vertically if needed */
   text-align: center; /* Center text inside the element */
   width: 100%; /* Ensure it takes full width of parent */
+}
+
+#projects .about-containers {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 0rem;
+  padding-right: 4rem;
 }
 
 #projects .experience-details-container {
