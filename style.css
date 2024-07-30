@@ -635,3 +635,53 @@ article .icon {
 .contact-icon {
   cursor: default;
 }
+
+.svg-text {
+  animation: text-fill-animation 0.5s ease forwards 4s;
+}
+.svg-text path {
+  stroke-width: 2; /* Adjust stroke width if needed */
+}
+.svg-text path:nth-child(1) {
+  stroke-dasharray: 547.05;
+  stroke-dashoffset: 547.05;
+  animation: text-animation 2s ease forwards;
+}
+.svg-text path:nth-child(2) {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: text-animation 2s ease forwards 0.5s;
+}
+.svg-text path:nth-child(3) {
+  stroke-dasharray: 495;
+  stroke-dashoffset: 495;
+  animation: text-animation 2s ease forwards 1s;
+}
+.svg-text path:nth-child(4) {
+  stroke-dasharray: 635;
+  stroke-dashoffset: 635;
+  animation: text-animation 2s ease forwards 1.5s;
+}
+.svg-text path:nth-child(5) {
+  stroke-dasharray: 635;
+  stroke-dashoffset: 635;
+  animation: text-animation 2s ease forwards 2s;
+}
+
+@keyframes text-animation {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes text-fill-animation {
+  from {
+    fill: transparent;
+    stroke: transparent;
+  }
+  to {
+    fill: white;
+    stroke: transparent;
+  }
+}
+
