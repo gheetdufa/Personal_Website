@@ -567,11 +567,13 @@ article .icon {
 }
 
 #projects .experience-details-container {
-  padding-top: 3rem;
+  padding-top: 1rem;
+  
   }
 .color-container {
   border-color: rgb(163, 163, 163);
   background: rgb(250, 250, 250);
+  
 }
 
 .project-img {
