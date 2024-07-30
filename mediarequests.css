@@ -1,0 +1,444 @@
+
+  /* Navbar styles for small screens */
+  @media only screen and (max-width: 600px) {
+    .sticky{
+        padding: 1rem;
+    }
+    .container{
+        padding-right: 0rem;
+    }
+    .navbar {
+      position: fixed;
+      bottom: 0;
+      width: 100vw;
+      height: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+  
+    }
+    .logo {
+      display: none;
+    }
+    .navbar-nav {
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-around;
+    }
+    .nav-link {
+      justify-content: center;
+    }
+    main {
+      margin: 0;
+    }
+    #contact,
+  footer {
+    height: 40vh;
+  }
+  #profile {
+    height: 83vh;
+    margin-bottom: 0;
+  }
+  article {
+    font-size: 1rem;
+  }
+  footer nav {
+    height: fit-content;
+    margin-bottom: 2rem;
+  }
+  .about-containers,
+  .contact-info-upper-container,
+  .btn-container {
+    flex-wrap: wrap;
+    margin-top: 0;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .section__pic-container {
+    width: auto;
+    height: 46vw;
+    justify-content: center;
+  }
+  
+  .contact-info-container {
+    margin: 0;
+  }
+  .contact-info-container p,
+  .nav-links li a {
+    font-size: 1rem;
+  }
+  .experience-sub-title {
+    font-size: 1.25rem;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  .section__pic-container {
+    width: auto;
+    height: 46vw;
+    justify-content: center;
+  }
+  .section__text__p2 {
+    font-size: 1.25rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .text-container {
+    text-align: justify;
+  }
+  [data-typewriter] {
+    font-size:3rem;
+    height: 4rem;
+  }
+  #profile,
+  .section-container {
+    display: block;
+    padding-top: 8rem;
+  }
+
+/* about section */
+
+#about {
+    padding-top: 1rem;
+    position: flex;
+  }
+  
+  #about .typer {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically if needed */
+    text-align: center; /* Center text inside the element */
+    width: 100%; /* Ensure it takes full width of parent */
+  }
+  
+  #about .section-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    padding-top: 0rem;
+  }
+  
+  #about .section__pic-container {
+    height: 250px;
+    width: 200px;
+    margin: auto;
+  }
+  
+  #about .about-containers {
+    display: flex;
+    flex-direction: row; /* Place elements side by side */
+    gap: 1rem;
+    margin-top: 1rem; /* Add space between image and boxes */
+    justify-content: center; /* Center the boxes horizontally */
+    padding-right: 1rem;
+  }
+  
+  #about .about-pic {
+    border-radius: 1rem;
+    height: 170px; /* Maintain aspect ratio */
+  }
+  
+  
+  #about .text-container {
+    padding: 0.5rem;
+    text-align: center; /* Center the text inside the container */
+    max-width: 800px; /* Limit the width of the text container */
+    flex-direction: row; /* Place elements side by side */
+
+  }
+  
+  #about .details-container h3 {
+    font-size: 1.25rem; /* Adjust the size as needed */
+    flex-direction: row; /* Place elements side by side */
+
+  }
+        /*experience*/
+        #experience .experience-details-container {
+            padding-top: 2rem;
+            }
+
+        #experience {
+            padding-right: 1rem;
+            padding-top: 1rem;
+            position: relative;
+        }
+        
+        #experience .typer {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically if needed */
+            text-align: center; /* Center text inside the element */
+            width: 100%; /* Ensure it takes full width of parent */
+        }
+        
+        .experience-sub-title {
+            color: rgb(85, 85, 85);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .experience-details-container {
+            display: flex;
+            flex-direction: column;
+            padding-top: 2rem;
+        }
+        
+        .article-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between; /* Adjusted to space items evenly */
+        }
+        
+        article {
+            display: flex;
+            flex: 1 1 calc(33.333% - 1rem); /* Responsive width */
+            gap: 0rem;
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+
+        .experience-details-container {
+            padding-top: 1rem;
+        }
+        
+        .article-container {
+            flex-direction: row;
+            gap: 1.5rem;
+            align-items: center;
+        }
+    
+        article {
+            width: 80%;
+            justify-content: flex-start;
+        }
+    
+        .experience-sub-title {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        article .icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    
+        article h3 {
+            font-size: 1rem;
+        }
+    
+        article p {
+            font-size: 0.8rem;
+        }
+
+        /*projects*/
+
+        #projects {
+            padding-top: 1rem;
+            position: relative;
+        }
+
+        #projects .article-container {
+            flex-direction: column;
+                display: flex;
+                text-align: initial;
+                flex-direction: row;
+                gap: 0rem;
+                justify-content: space-around;
+              
+        }
+        #projects .experience-sub-title.project-title {
+            padding: 0.7rem; /* Remove padding */
+            margin: 0;  /* Remove margin */
+        }
+  
+        
+        #projects .typer {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically if needed */
+            text-align: center; /* Center text inside the element */
+            width: 100%; /* Ensure it takes full width of parent */
+        }
+        
+        #projects .experience-details-container {
+            padding-top: 0.5rem;
+        }
+
+    
+        .color-container {
+            display: flex;
+            flex-direction: row;
+            padding: 0.5rem;
+            border: 1px solid rgb(163, 163, 163);
+            background: rgb(250, 250, 250);
+            border-radius: 1rem; /* Add border radius for rounded corners */
+            
+        }
+    
+        .project-img {
+            border-radius: 1rem;
+            width: 100px; /* Adjust to fit container */
+            height: 100px; /* Maintain aspect ratio */
+        }
+    
+        .project-title {
+            color: black;
+            text-align: center; /* Center text */
+        }
+    
+        .project-btn-container {
+            display: flex;
+            justify-content: space-between; /* Space buttons evenly */
+            margin-top: 1rem; /* Space between title and buttons */
+        }
+    
+        .project-btn {
+            color: black;
+            border-color: rgb(163, 163, 163);
+            padding: 0.5rem 0.5rem; /* Add padding for buttons */
+            border-radius: 0.5rem; /* Rounded corners */
+            text-align: center;
+        }
+
+        .project-btn-container {
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: center;
+        }
+    
+        .project-btn {
+            margin-bottom: 0.2rem; /* Space between buttons */
+        }
+
+        /*contact*/
+
+        #contact {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            height: 70vh;
+          }
+          
+          #contact .typer {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically if needed */
+            text-align: center; /* Center text inside the element */
+            width: 100%; /* Ensure it takes full width of parent */
+          }
+          
+          .contact-info-upper-container {
+            padding-top: 5rem;
+            display: flex;
+            justify-content: center;
+            border-radius: 2rem;
+            border: rgb(53, 53, 53) 0.1rem solid;
+            border-color: rgb(163, 163, 163);
+            background: (250, 250, 250);
+            margin: 2rem auto;
+            padding: 0.5rem;
+          }
+          
+          .contact-info-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem;
+          }
+          
+          .contact-info-container p {
+            font-size: larger;
+          }
+          
+          .contact-icon {
+            cursor: default;
+          }
+
+    }
+  
+  /* Navbar styles for large screens */
+  @media only screen and (min-width: 601px) {
+    section {
+        margin-left: 5rem; /* Ensure sections do not overlap with the sidebar */
+        margin-bottom: 0; /* Remove bottom margin */
+        width: calc(100% - 5rem); /* Adjust width to prevent overlap */
+    }
+
+ 
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 5rem;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom-right-radius: 50px;
+      border-top-right-radius: 50px;
+
+    }
+
+    .navbar:hover {
+      width: 16rem;
+    }
+    .navbar:hover .link-text {
+      display: inline;
+    }
+    .navbar:hover .logo svg {
+      margin-left: 11rem;
+    }
+    .navbar:hover .logo-text {
+      left: 0px;
+    }
+  }
+
+  @media only screen and (max-width: 1100px){
+    p{
+        font-size: .8rem;
+    }
+
+    #projects{
+        height: 400%;
+    }
+
+    .projects__sticky{
+        height: 25%;
+    }
+
+    .project {
+        width: 50vw;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    #projects{
+        height: 800%;
+    }
+
+    .projects__sticky{
+        height: 12.5%;
+    }
+
+    .project {
+        width:100vw ;
+    }
+
+    .post{
+        width: 80%;
+    }
+}
+
