@@ -347,7 +347,7 @@
             border: rgb(53, 53, 53) 0.1rem solid;
             border-color: rgb(163, 163, 163);
             background: (250, 250, 250);
-            margin: 2rem auto;
+            margin: 1rem;
             padding: 0.5rem;
           }
           
@@ -357,10 +357,12 @@
             justify-content: center;
             gap: 0.5rem;
             margin: 1rem;
+            
           }
           
           .contact-info-container p {
             font-size: larger;
+            
           }
           
           .contact-icon {
