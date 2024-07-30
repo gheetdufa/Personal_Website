@@ -561,6 +561,12 @@ article .icon {
 
 /* PROJECTS SECTION */
 
+#projects .btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 3; /* Ensure content is above particles.js */
+}
 
 #projects {
   padding-top: 1.5rem;
@@ -578,9 +584,8 @@ article .icon {
 #projects .about-containers {
   display: flex;
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
   padding-left: 0rem;
-  padding-right: 4rem;
 }
 
 #projects .experience-details-container {
@@ -593,10 +598,21 @@ article .icon {
   
 }
 
+#project .article-container {
+  display: flex;
+  text-align: initial;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-around;
+  
+}
+
 .project-img {
   border-radius: 2rem;
   width: 90%;
   height: 90%;
+  padding-top: 1rem;
 }
 
 .project-title {
