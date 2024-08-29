@@ -569,7 +569,7 @@ article .icon {
 }
 
 #projects {
-  padding-top: 1.5rem;
+  padding-top: 0rem;
   position: relative;
 }
 
@@ -584,7 +584,7 @@ article .icon {
 #projects .about-containers {
   display: flex;
   gap: 2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   padding-left: 0rem;
 }
 
@@ -610,8 +610,8 @@ article .icon {
 
 .project-img {
   border-radius: 2rem;
-  width: 90%;
-  height: 90%;
+  width: 80%;
+  height: 800%;
 }
 
 .project-title {
@@ -623,6 +623,20 @@ article .icon {
   color: black;
   border-color: rgb(163, 163, 163);
 }
+
+#projects .article-container {
+  flex-direction: column;
+      display: flex;
+      text-align: initial;
+      flex-direction: row;
+      gap: 0rem;
+      justify-content: space-around;
+    
+}
+#projects .experience-details-container {
+  padding-top: 0.5rem;
+}
+
 
 /* CONTACT */
 
