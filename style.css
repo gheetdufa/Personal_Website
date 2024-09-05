@@ -112,6 +112,9 @@ section:nth-child(4) {
 }
 section:nth-child(5) {
   top: -400vh;
+}
+section:nth-child(6) {
+  top: -500vh;
   height: 100vh;
 }
 
@@ -433,7 +436,7 @@ main {
 /* ABOUT SECTION */
 
 #about {
-  padding-top: 2rem;
+  padding-top: 1rem;
   position: relative;
 }
 
@@ -447,7 +450,7 @@ main {
 
 #about .section-container {
   display: flex; /* Use flexbox for the container */
-  padding-top: 2rem;
+  padding-top: 1rem;
   align-items: center; /* Align items vertically center */
 }
 
@@ -473,7 +476,7 @@ main {
 
 .about-pic {
   border-radius: 1rem;
-  height: 40vh; /* Maintain aspect ratio */
+  height: 50vh; /* Maintain aspect ratio */
 }
 
 .details-container {
