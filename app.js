@@ -40,3 +40,18 @@ const themeMap = {
   }
 
 
+  function toggleIntroduction() {
+    const modal = document.getElementById("intro-modal");
+    modal.classList.toggle("active");
+  }
+
+  // Close modal when clicking outside
+  window.addEventListener('click', function(event) {
+    const modal = document.getElementById("intro-modal");
+    if (event.target === modal) {
+      modal.classList.remove("active");
+    }
+  });
+
+
+

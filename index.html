@@ -37,6 +37,9 @@
                         <button class="btn btn-color-1" onclick="location.href='./#contact'">
                           Contact Info
                         </button>
+                        <button class="btn btn-color-1" onclick="toggleIntroduction()">
+                          Introduction
+                        </button>
                       </div>
                       <div id="socials-container">
                         <img
@@ -512,5 +515,20 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
     integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <!-- Introduction Modal -->
+    <div id="intro-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="toggleIntroduction()">&times;</span>
+        <h2>Introduction</h2>
+        <p>
+          Welcome to my ePortfolio. This space brings together the work I created across the semester and shows how my thinking, writing, and design choices have grown over time. Each project sits in its own context, shaped by the audience I was speaking to and the purpose I was trying to meet. Together, these pieces trace how I’ve learned to communicate with more clarity, intention, and awareness of the people on the other side of the page.
+        </p>
+        <br>
+        <p>
+          You can navigate using the menu on the left. Each artifact includes a short explanation of what it is, why I made it, and the rhetorical moves behind it. If you’d like a fuller picture of how I approach communication from visual design to written argument feel free to explore the video introduction page as well.
+        </p>
+      </div>
+    </div>
 </body>
 </html>
