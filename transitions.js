@@ -33,7 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Fade in when page loads
 window.addEventListener('load', function() {
-    document.body.classList.add('project-page');
+    // Only add project-page class if there is no active intro
+    const intro = document.querySelector('.intro');
+    if (!intro || intro.classList.contains('hidden')) {
+        document.body.classList.add('project-page');
+    }
     
     // Fade out transition overlay if it exists
     const existingTransition = document.querySelector('.page-transition');

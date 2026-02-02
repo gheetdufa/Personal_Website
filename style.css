@@ -452,14 +452,14 @@ main {
 #about .section-container {
   display: flex; /* Use flexbox for the container */
   padding-top: 1rem;
-  align-items: center; /* Align items vertically center */
+  align-items: flex-start; /* Align items to the top */
 }
 
 #about .section__pic-container {
-  flex: 1; /* Allow the image container to grow */
   height: 400px;
   width: 400px;
   margin: auto;
+  flex-shrink: 0;
 }
 
 #about .about-details-container {
@@ -477,7 +477,10 @@ main {
 
 .about-pic {
   border-radius: 1rem;
-  height: 50vh; /* Maintain aspect ratio */
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  margin: auto;
 }
 
 .details-container {
@@ -629,13 +632,12 @@ article .icon {
 }
 
 #projects .article-container {
+  display: flex;
   flex-direction: column;
-      display: flex;
-      text-align: initial;
-      flex-direction: row;
-      gap: 0rem;
-      justify-content: space-around;
-    
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  justify-content: center;
 }
 #projects .experience-details-container {
   padding-top: 0.5rem;
