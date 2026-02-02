@@ -131,9 +131,7 @@
   }
   
   #about .section__pic-container {
-    height: 250px;
-    width: 200px;
-    margin: auto;
+    display: none;
   }
   
   #about .about-containers {
