@@ -95,18 +95,25 @@
   const SCRAMBLE_POOL = "abcdefghjkmnpqrstuvwxyz0123456789!<>-_\\/[]{}=+*^?#";
   const scrambleHandles = new WeakMap();
 
+  function lockScrambleWidth(el) {
+    el.style.display = "inline-block";
+    el.style.whiteSpace = "nowrap";
+    el.style.overflow = "hidden";
+    el.style.width = "";
+    el.style.width = `${Math.ceil(el.getBoundingClientRect().width)}px`;
+  }
+
   function scrambleTo(el, target, duration = 480) {
     const prev = scrambleHandles.get(el);
     if (prev) cancelAnimationFrame(prev);
-    const from = el.textContent;
     const start = performance.now();
     function frame(now) {
       const p = Math.min(1, (now - start) / duration);
       const reveal = Math.floor(p * target.length);
-      const len = Math.round(from.length + (target.length - from.length) * p);
-      let out = target.slice(0, reveal);
-      for (let i = reveal; i < len; i++) {
-        out += SCRAMBLE_POOL[(Math.random() * SCRAMBLE_POOL.length) | 0];
+      let out = "";
+      for (let i = 0; i < target.length; i++) {
+        if (i < reveal || target[i] === " ") out += target[i];
+        else out += SCRAMBLE_POOL[(Math.random() * SCRAMBLE_POOL.length) | 0];
       }
       el.textContent = out;
       if (p < 1) scrambleHandles.set(el, requestAnimationFrame(frame));
@@ -119,11 +126,18 @@
   }
 
   if (finePointer && !prefersReduced) {
-    document.querySelectorAll("[data-scramble]").forEach((el) => {
-      const original = el.textContent;
-      const host = el.closest("a, button") || el;
-      host.addEventListener("mouseenter", () => scrambleTo(el, original));
-    });
+    const wireScramble = () => {
+      document.querySelectorAll("[data-scramble]").forEach((el) => {
+        if (el.dataset.scrambleBound) return;
+        el.dataset.scrambleBound = "1";
+        lockScrambleWidth(el);
+        const original = el.textContent;
+        const host = el.closest("a, button") || el;
+        host.addEventListener("mouseenter", () => scrambleTo(el, original));
+      });
+    };
+    if (document.fonts?.ready) document.fonts.ready.then(wireScramble);
+    else wireScramble();
   }
 
   /* ---------------- hero: split title into live letters ---------------- */

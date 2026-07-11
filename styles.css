@@ -861,11 +861,13 @@ body.no-webgl .ambient {
 }
 
 .panel__name {
+  display: inline-block;
   font-size: clamp(1.9rem, 4.2vw, 3.4rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.03em;
   text-transform: uppercase;
+  white-space: nowrap;
   transition: color 0.3s;
 }
 
