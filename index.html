@@ -1,542 +1,480 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mediarequests.css">
-    <link rel="stylesheet" href="transitions.css">
-    <link rel="stylesheet" href="assets\font-awesome-4.7.0\css\font-awesome.min.css">
-    <link rel="icon" href="./assets/favicon2.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dheer Guda — Developer & Builder</title>
+  <meta name="description" content="Dheer Guda is a student developer at the University of Maryland building tools that make life easier for real people." />
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/favicon.svg" />
 
-    <title>Dheer Guda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <section>
-      <div id="particles-js"></div>
-        <div class="sticky">
-            <div class="container">
-                <section id="profile">
-                    <div class="section__pic-container">
-                      <img src="./assets/profile-pic.png" alt="Dheer Guda profile picture" />
-                    </div>
-                    <div class="section__text">
-                      <p class="section__text__p1">Hello, I'm a</p>
-                      <div class="typer">
-                        <h1 data-typewriter="Developer...,Innovator...,Creator...,Student..."></h1>
-                      </div>
-                      <p class="section__text__p2">Dheer Guda</p>
-                      <div class="btn-container">
-                        <button
-                          class="btn btn-color-2"
-                          onclick="window.open('./assets/Resume_2025.pdf')"
-                        >
-                          Download CV
-                        </button>
-                        <button class="btn btn-color-1" onclick="location.href='./#contact'">
-                          Contact Info
-                        </button>
-                      </div>
-                      <div id="socials-container">
-                        <img
-                          src="./assets/linkedin.png"
-                          alt="My LinkedIn profile"
-                          class="icon"
-                          onclick="location.href='https://www.linkedin.com/in/dheer-guda-a29475246/'"
-                        />
-                        <img
-                          src="./assets/github.png"
-                          alt="My Github profile"
-                          class="icon"
-                          onclick="location.href='https://github.com/gheetdufa'"
-                        />
-                        
-                      </div>
-                    </div>
-                  </section>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="sticky">
-            <div class="container">
-              <section id="about">
-                <p class="section__text__p1">Get To Know More</p>
-                <h1 class="title">
-                  <div class="typer">
-                    <h1 data-typewriter="About Me"></h1>
-                  </div>
-                </h1>
-                <div class="section-container">
-                  <div class="section__pic-container">
-                    <img
-                      src="./assets/profile-pic-3.jpg"
-                      alt="Profile picture"
-                      class="about-pic"
-                    />
-                  </div>
-                  <div class="about-details-container">
-                    <div class="about-containers">
-                      <div class="details-container">
-                        <img
-                          src="./assets/experience.png"
-                          alt="Experience icon"
-                          class="icon"
-                        />
-                        <h3>Experience</h3>
-                        <p>2+ years <br />Full Stack Development</p>
-                      </div>
-                      <div class="details-container">
-                        <img
-                          src="./assets/education.png"
-                          alt="Education icon"
-                          class="icon"
-                        />
-                        <h3>Education</h3>
-                        <p>Junior At University Of Maryland</p>
-                      </div>
-                    </div>
-                    <div class="text-container">
-                      <p>
-                        I am a student developer who enjoys building tools that make life easier for real people. Growing up surrounded by technology sparked my curiosity and shaped how I think about engineering. I like understanding how things work, why users struggle, and how thoughtful design can remove barriers. My projects reflect values that matter to me, including accessibility, empathy, and practical impact. Whether I am developing software for therapists or creating interfaces to support friends, I try to build with intention. My goal is to keep learning, stay creative, and create solutions that genuinely help others.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="./assets/arrow.png"
-                  alt="Arrow icon"
-                  class="icon arrow"
-                  onclick="location.href='./#projects'"
-                />
-              </section>
-        </div>
-    </section>
-    <section>
-        <div class="sticky">
-            <div class="container">
-              <section id="projects">
-                <p class="section__text__p1">Browse My Recent</p>
-                <h1 class="title">
-                  <div class="typer">
-                    <h1 data-typewriter="Projects"></h1>
-                  </div>
-                </h1>
-                <div class="experience-details-container">
-                  <div class="about-containers">
-                    <div class="details-container color-container">
-                      <div class="article-container">
-                        <img
-                          src="./assets/synari-10edb4f1.png"
-                          alt="Synari"
-                          class="project-img"
-                        />
-                        <h2 class="experience-sub-title project-title">Synari</h2>
-                      </div>
-                      <div class="btn-container">
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="location.href='https://synari.org/'"
-                        >
-                          Visit Website
-                        </button>
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="navigateToPage('./projects/synari.html')"
-                        >
-                          Learn More
-                        </button>
-                      </div>
-                    </div>
-                    <div class="details-container color-container">
-                      <div class="article-container">
-                        <img
-                          src="./assets/Translator.png"
-                          alt="SignLang Interface"
-                          class="project-img"
-                        />
-                        <h2 class="experience-sub-title project-title">SignLang Interface</h2>
-                      </div>
-                      <div class="btn-container">
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="location.href='https://github.com/ukataria/Bitcamp2024/tree/main'"
-                        >
-                          Github
-                        </button>
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="navigateToPage('./projects/signlang-interface.html')"
-                        >
-                          Learn More
-                        </button>
-                      </div>
-                    </div>
-                    <div class="details-container color-container">
-                      <div class="article-container">
-                        <img
-                          src="./assets/project-2.png"
-                          alt="Audit.AI"
-                          class="project-img"
-                        />
-                        <h2 class="experience-sub-title project-title">Audit.AI</h2>
-                      </div>
-                      <div class="btn-container">
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="location.href='https://github.com/ukataria/Bitcamp2024/tree/main'"
-                        >
-                          Github
-                        </button>
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="navigateToPage('./projects/audit-ai.html')"
-                        >
-                          Learn More
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="./assets/arrow.png"
-                  alt="Arrow icon"
-                  class="icon arrow"
-                  onclick="location.href='./#contact'"
-                />
-              </section>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="sticky">
-            <div class="container">
-              <section id="projects">
-                <p class="section__text__p1">Look At More Recent</p>
-                <h1 class="title">
-                  <div class="typer">
-                    <h1 data-typewriter="Projects"></h1>
-                  </div>
-                </h1>
-                <div class="experience-details-container">
-                  <div class="about-containers">
-                    <div class="details-container color-container">
-                      <div class="article-container">
-                        <img
-                          src="./assets/project-3.jpg"
-                          alt="Rant.AI"
-                          class="project-img"
-                        />
-                        <h2 class="experience-sub-title project-title">Rant.AI</h2>
-                      </div>
-                      <div class="btn-container">
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="location.href='https://github.com/gheetdufa/journal_app-1'"
-                        >
-                          Github
-                        </button>
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="navigateToPage('./projects/rant-ai.html')"
-                        >
-                          Learn More
-                        </button>
-                      </div>
-                    </div>
-                    <div class="details-container color-container">
-                      <div class="article-container">
-                        <img
-                          src="./assets/tutorWiz.png"
-                          alt="tutorWiz"
-                          class="project-img"
-                        />
-                        <h2 class="experience-sub-title project-title">tutorWiz</h2>
-                      </div>
-                      <div class="btn-container">
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="location.href='https://github.com/suhas-kavuri/WizardTutor'"
-                        >
-                          Github
-                        </button>
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="navigateToPage('./projects/tutorwiz.html')"
-                        >
-                          Learn More
-                        </button>
-                      </div>
-                    </div>
-                    <div class="details-container color-container">
-                      <div class="article-container">
-                        <img
-                          src="./assets/askTestudo.png"
-                          alt="askTestudo"
-                          class="project-img"
-                        />
-                        <h2 class="experience-sub-title project-title">askTestudo</h2>
-                      </div>
-                      <div class="btn-container">
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="location.href='https://github.com/gheetdufa/HoyaHacksAskTestudo'"
-                        >
-                          Github
-                        </button>
-                        <button
-                          class="btn btn-color-2 project-btn"
-                          onclick="navigateToPage('./projects/asktestudo.html')"
-                        >
-                          Learn More
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="./assets/arrow.png"
-                  alt="Arrow icon"
-                  class="icon arrow"
-                  onclick="location.href='./#contact'"
-                />
-              </section>
-            </div>
-        </div>
-    </section>
-    <section>
-      <div class="sticky">
-          <div class="container">
-            <section id="contact">
-              <p class="section__text__p1">Get in Touch</p>
-              <h1 class="title">
-                <div class="typer">
-                  <h1 data-typewriter="Contact Me"></h1>
-                </div>
-              </h1>
-              <div class="contact-info-upper-container">
-                <div class="contact-info-container">
-                  <img
-                    src="./assets/email.png"
-                    alt="Email icon"
-                    class="icon contact-icon email-icon"
-                  />
-                  <p><a href="mailto:gudadheer@gmail.com">gudadheer@gmail.com</a></p>
-                </div>
-                <div class="contact-info-container">
-                  <img
-                    src="./assets/linkedin.png"
-                    alt="LinkedIn icon"
-                    class="icon contact-icon"
-                    onclick="location.href='github.com/gheetdufa'"
-                  />
-                  <p><a href="https://www.linkedin.com/in/dheer-guda-a29475246/">LinkedIn</a></p>
-                </div>
-              </div>
-            </section>
-          </div>
-      </div>
-  </section>
+  <!-- ======================= SHADER BACKGROUND ======================= -->
+  <canvas id="gl" class="gl" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
 
+  <!-- ======================= INTRO / PRELOADER ======================= -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro__display">
+      <div class="intro__letters" id="intro-letters" aria-hidden="true"></div>
+      <p class="intro__status" id="intro-status"></p>
+    </div>
+    <div class="intro__veil" id="intro-veil" aria-hidden="true"></div>
+    <button class="intro__skip" id="intro-skip" type="button">skip</button>
+  </div>
 
+  <!-- ======================= CURSOR ======================= -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
 
-    <nav class="navbar">
-        <ul class="navbar-nav">
-          <li class="logo">
-            <a href="#" class="nav-link">
-              <span class="link-text logo-text">Dheer</span>
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fad"
-                data-icon="angle-double-right"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-              >
-                <g class="fa-group">
-                  <path
-                    fill="currentColor"
-                    d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
-                    class="fa-secondary"
-                  ></path>
-                  <path
-                    fill="currentColor"
-                    d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
-                    class="fa-primary"
-                  ></path>
-                </g>
-              </svg>
-            </a>
-          </li>
-    
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fad"
-                data-icon="alien-monster"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 576 512"
-                class="svg-inline--fa fa-alien-monster fa-w-18 fa-9x"
-              >
-                <g class="fa-group">
-                  <path
-                    fill="currentColor"
-                    d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"
-                    class="fa-secondary"
-                  ></path>
-                  <path
-                    fill="currentColor"
-                    d=""
-                    class="fa-primary"
-                  ></path>
-                </g>
-              </svg>
-              <span class="link-text">Home</span>
-            </a>
-          </li>
-          
-    
-          <li class="nav-item">
-            <a href="#about" class="nav-link">
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fad"
-                data-icon="alien-monster"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 576 512"
-                class="svg-inline--fa fa-alien-monster fa-w-18 fa-9x"
-              >
-                <g class="fa-group">
-                  <path
-                    fill="currentColor"
-                    d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm80 256l64 0c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16L80 384c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm256-32l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
-                    class="fa-secondary"
-                  ></path>
-                  <path
-                    fill="currentColor"
-                    d=""
-                    class="fa-primary"
-                  ></path>
-                </g>
-              </svg>
-              <span class="link-text">About</span>
-            </a>
-          </li>
-    
-          <li class="nav-item">
-            <a href="#projects" class="nav-link">
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fad"
-                data-icon="space-station-moon-alt"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-                class="svg-inline--fa fa-space-station-moon-alt fa-w-16 fa-5x"
-              >
-                <g class="fa-group">
-                  <path
-                    fill="currentColor"
-                    d="M181.3 32.4c17.4 2.9 29.2 19.4 26.3 36.8L197.8 128l95.1 0 11.5-69.3c2.9-17.4 19.4-29.2 36.8-26.3s29.2 19.4 26.3 36.8L357.8 128l58.2 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-68.9 0L325.8 320l58.2 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-68.9 0-11.5 69.3c-2.9 17.4-19.4 29.2-36.8 26.3s-29.2-19.4-26.3-36.8l9.8-58.7-95.1 0-11.5 69.3c-2.9 17.4-19.4 29.2-36.8 26.3s-29.2-19.4-26.3-36.8L90.2 384 32 384c-17.7 0-32-14.3-32-32s14.3-32 32-32l68.9 0 21.3-128L64 192c-17.7 0-32-14.3-32-32s14.3-32 32-32l68.9 0 11.5-69.3c2.9-17.4 19.4-29.2 36.8-26.3zM187.1 192L165.8 320l95.1 0 21.3-128-95.1 0z"
-                    class="fa-secondary"
-                  ></path>
-                  <path
-                    fill="currentColor"
-                    d=""
-                    class="fa-primary"
-                  ></path>
-                </g>
-              </svg>
-              <span class="link-text">Projects</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#contact" class="nav-link">
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fad"
-                data-icon="space-station-moon-alt"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-                class="svg-inline--fa fa-space-station-moon-alt fa-w-16 fa-5x"
-              >
-                <g class="fa-group">
-                  <path
-                    fill="currentColor"
-                    d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"
-                    class="fa-secondary"
-                  ></path>
-                  <path
-                    fill="currentColor"
-                    d=""
-                    class="fa-primary"
-                  ></path>
-                </g>
-              </svg>
-              <span class="link-text">Contact</span>
-            </a>
-          </li>
+  <!-- ======================= NAV ======================= -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__logo" id="nav-logo" data-magnetic title="DG">D<em class="nav__logo-g">G</em></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about" class="nav__link" data-magnetic><span class="nav__link-num">01</span> <span data-scramble>about</span></a>
+      <a href="#work" class="nav__link" data-magnetic><span class="nav__link-num">02</span> <span data-scramble>work</span></a>
+      <a href="#contact" class="nav__link" data-magnetic><span class="nav__link-num">03</span> <span data-scramble>contact</span></a>
+    </nav>
+    <div class="nav__meta">
+      <span class="nav__location">College Park, MD</span>
+      <span class="nav__time" id="local-time">--:--</span>
+    </div>
+  </header>
 
-        
-          
-        </ul>
-      </nav>
-      <div class="intro">
-        <h1 class="start-header">
-          <svg class="svg-text" width="393" height="120" viewBox="0 0 393 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M345.653 114V116H347.653H360.469H362.469V114V74.256C362.469 68.6828 363.355 64.3738 364.984 61.2016C366.671 57.9158 368.757 55.6458 371.188 54.2449C373.747 52.7702 376.309 52.064 378.901 52.064C379.694 52.064 380.618 52.1082 381.68 52.2005L381.687 52.2011C382.697 52.2852 383.901 52.5002 385.313 52.8646L387.454 53.4169L387.79 51.2321L389.518 40.0001L389.783 38.2744L388.109 37.7784C386.747 37.3747 385.442 37.0666 384.198 36.8592C382.943 36.6502 381.705 36.544 380.485 36.544C376.169 36.544 372.092 37.8561 368.29 40.4061C365.503 42.24 363.184 44.49 361.345 47.1476C361.066 46.1057 360.757 45.1097 360.417 44.1603C359.689 41.9357 358.442 39.9343 356.721 38.1597L356.132 37.552H355.285H345.349H342.805L343.405 40.024C344.189 43.2511 344.752 47.0743 345.083 51.5085L345.083 51.5191L345.084 51.5296C345.464 55.9866 345.653 60.394 345.653 64.752V114Z" stroke="white" stroke-width="4"/>
-            <path d="M284.472 114.305L284.48 114.308C289.088 116.407 294.175 117.44 299.709 117.44C303.324 117.44 307.343 116.989 311.754 116.107C316.288 115.25 320.929 113.595 325.674 111.173L327.27 110.359L326.635 108.684L323.035 99.1795L322.247 97.0991L320.262 98.1034C316.266 100.125 312.895 101.445 310.125 102.116C307.31 102.751 304.32 103.072 301.149 103.072C297.175 103.072 293.667 101.989 290.561 99.8347C287.429 97.6135 284.907 94.5209 283.021 90.4825C281.196 86.472 280.253 81.7512 280.253 76.272C280.253 70.5528 281.091 65.8151 282.69 61.9963L282.69 61.9963L282.693 61.9887C284.306 58.0915 286.492 55.2568 289.195 53.3561C291.905 51.4507 295.049 50.48 298.701 50.48C301.413 50.48 303.783 51.2428 305.878 52.7628L305.886 52.7682L305.893 52.7736C308.062 54.3164 309.706 56.4063 310.82 59.107L310.827 59.1248L310.835 59.1425C311.769 61.2871 312.209 63.6796 312.114 66.352H295.677C291.859 66.352 288.622 67.3943 286.271 69.7458C284.217 71.7996 282.655 74.3365 281.56 77.3086L280.569 80H283.437H325.197H326.673L327.108 78.5894C328.763 73.2221 329.307 67.9984 328.696 62.9387C328.137 57.876 326.611 53.3176 324.09 49.3007C321.616 45.2322 318.327 42.0192 314.243 39.6909C310.11 37.2865 305.389 36.112 300.141 36.112C292.603 36.112 285.976 37.7362 280.337 41.0667C274.709 44.3427 270.368 49.0291 267.323 55.0676L267.32 55.0736C264.321 61.0714 262.861 68.111 262.861 76.128C262.861 81.9856 263.705 87.4377 265.415 92.4678L265.417 92.4736C267.124 97.444 269.572 101.82 272.77 105.576L272.779 105.588L272.789 105.598C276.048 109.315 279.948 112.22 284.472 114.305Z" stroke="white" stroke-width="4"/>
-            <path d="M206.144 114.305L206.152 114.308C210.76 116.407 215.847 117.44 221.381 117.44C224.996 117.44 229.015 116.989 233.426 116.107C237.96 115.25 242.601 113.595 247.346 111.173L248.942 110.359L248.307 108.684L244.707 99.1795L243.919 97.0991L241.934 98.1034C237.938 100.125 234.567 101.445 231.797 102.116C228.982 102.751 225.991 103.072 222.821 103.072C218.847 103.072 215.339 101.989 212.233 99.8347C209.1 97.6135 206.579 94.5209 204.693 90.4825C202.868 86.472 201.925 81.7512 201.925 76.272C201.925 70.5528 202.763 65.8151 204.362 61.9963L204.362 61.9963L204.365 61.9887C205.977 58.0915 208.164 55.2568 210.867 53.3561C213.577 51.4507 216.721 50.48 220.373 50.48C223.085 50.48 225.455 51.2428 227.55 52.7628L227.558 52.7682L227.565 52.7736C229.733 54.3164 231.377 56.4063 232.492 59.107L232.499 59.1248L232.507 59.1425C233.441 61.2871 233.881 63.6796 233.786 66.352H217.349C213.531 66.352 210.294 67.3943 207.943 69.7458C205.889 71.7996 204.327 74.3365 203.232 77.3086L202.24 80H205.109H246.869H248.345L248.78 78.5894C250.435 73.2221 250.979 67.9984 250.368 62.9387C249.809 57.876 248.283 53.3176 245.762 49.3007C243.287 45.2322 239.999 42.0192 235.915 39.6909C231.782 37.2865 227.061 36.112 221.813 36.112C214.275 36.112 207.648 37.7362 202.009 41.0667C196.381 44.3427 192.04 49.029 188.995 55.0676L188.992 55.0736C185.993 61.0714 184.533 68.111 184.533 76.128C184.533 81.9856 185.377 87.4377 187.087 92.4678L187.089 92.4736C188.796 97.444 191.243 101.82 194.442 105.576L194.451 105.588L194.461 105.598C197.72 109.315 201.62 112.22 206.144 114.305Z" stroke="white" stroke-width="4"/>
-            <path d="M104.608 114V116H106.608H120H122V114V45.4939L123.61 47.1415C125.829 49.4134 128.301 50.9608 131.035 51.6443C133.696 52.3096 136.562 52.2622 139.589 51.5838C140.898 51.2928 141.975 51.0139 142.788 50.7442C143.299 50.587 144.037 50.48 145.056 50.48C147.29 50.48 148.608 51.2733 149.445 52.7205L149.458 52.7435L149.472 52.766C150.52 54.4742 151.12 56.7925 151.12 59.856V114V116H153.12H166.944H168.944V114V61.296C168.944 55.1792 168.014 50.1457 165.966 46.3738C163.964 42.6862 161.214 39.9765 157.695 38.3807C154.383 36.8569 150.735 36.112 146.784 36.112C143.889 36.112 140.686 36.6887 137.197 37.7841C133.615 38.8605 129.212 40.9668 124.026 44.0205L122 45.213V4.84799V2.84799H120H106.608H104.608V4.84799V114Z" stroke="white" stroke-width="4"/>
-            <path d="M22.4983 112.326L21.2565 114.613L23.7867 115.224C26.6045 115.904 29.1523 116.42 31.4256 116.767C33.7358 117.159 35.9388 117.408 38.0329 117.509C40.0921 117.655 42.22 117.728 44.416 117.728C51.1358 117.728 57.4768 116.322 63.4152 113.504C69.3745 110.699 74.6269 106.769 79.1659 101.731C83.7608 96.6362 87.3422 90.6572 89.9196 83.8172C92.509 76.9453 93.792 69.4796 93.792 61.44C93.792 49.9448 91.507 39.9497 86.8483 31.5319C82.2303 23.1006 75.4473 16.6301 66.5608 12.1364C57.717 7.63992 47.0449 5.44 34.624 5.44C30.3556 5.44 25.409 5.75844 19.7937 6.38749C14.1563 6.971 9.00493 7.82406 4.3454 8.95216L2.81601 9.32243V10.896V114V116H4.81601H18.496H20.496V114V20.7401C22.281 20.5459 24.2039 20.3774 26.2656 20.2353L26.128 18.24L26.2656 20.2353C29.0024 20.0465 31.7885 19.952 34.624 19.952C43.8506 19.952 51.3707 21.6158 57.287 24.8224L57.287 24.8224L57.2974 24.828C63.2076 27.9861 67.6124 32.5904 70.55 38.6916L70.5552 38.7024C73.5571 44.8425 75.104 52.3968 75.104 61.44C75.104 67.2499 74.2912 72.7089 72.6775 77.8276C71.057 82.92 68.8235 87.3746 65.9909 91.2123C63.1634 95.0431 59.8845 98.018 56.1588 100.173C52.4795 102.3 48.5289 103.36 44.272 103.36H44.2653H44.2585H44.2518H44.245H44.2383H44.2316H44.2249H44.2181H44.2114H44.2047H44.198H44.1913H44.1846H44.1779H44.1712H44.1645H44.1578H44.1511H44.1445H44.1378H44.1311H44.1244H44.1178H44.1111H44.1045H44.0978H44.0912H44.0845H44.0779H44.0712H44.0646H44.058H44.0514H44.0447H44.0381H44.0315H44.0249H44.0183H44.0117H44.0051H43.9985H43.9919H43.9853H43.9787H43.9722H43.9656H43.959H43.9524H43.9459H43.9393H43.9328H43.9262H43.9197H43.9131H43.9066H43.9H43.8935H43.887H43.8805H43.8739H43.8674H43.8609H43.8544H43.8479H43.8414H43.8349H43.8284H43.8219H43.8154H43.8089H43.8025H43.796H43.7895H43.783H43.7766H43.7701H43.7637H43.7572H43.7508H43.7443H43.7379H43.7314H43.725H43.7186H43.7122H43.7057H43.6993H43.6929H43.6865H43.6801H43.6737H43.6673H43.6609H43.6545H43.6481H43.6417H43.6353H43.629H43.6226H43.6162H43.6099H43.6035H43.5972H43.5908H43.5845H43.5781H43.5718H43.5654H43.5591H43.5528H43.5465H43.5401H43.5338H43.5275H43.5212H43.5149H43.5086H43.5023H43.496H43.4897H43.4834H43.4771H43.4708H43.4646H43.4583H43.452H43.4458H43.4395H43.4333H43.427H43.4208H43.4145H43.4083H43.402H43.3958H43.3896H43.3833H43.3771H43.3709H43.3647H43.3585H43.3523H43.3461H43.3399H43.3337H43.3275H43.3213H43.3151H43.3089H43.3028H43.2966H43.2904H43.2843H43.2781H43.272H43.2658H43.2597H43.2535H43.2474H43.2412H43.2351H43.229H43.2228H43.2167H43.2106H43.2045H43.1984H43.1923H43.1862H43.1801H43.174H43.1679H43.1618H43.1557H43.1496H43.1436H43.1375H43.1314H43.1254H43.1193H43.1132H43.1072H43.1011H43.0951H43.0891H43.083H43.077H43.071H43.0649H43.0589H43.0529H43.0469H43.0409H43.0349H43.0289H43.0229H43.0169H43.0109H43.0049H42.9989H42.9929H42.987H42.981H42.975H42.9691H42.9631H42.9571H42.9512H42.9452H42.9393H42.9334H42.9274H42.9215H42.9156H42.9096H42.9037H42.8978H42.8919H42.886H42.8801H42.8742H42.8683H42.8624H42.8565H42.8506H42.8447H42.8388H42.833H42.8271H42.8212H42.8154H42.8095H42.8036H42.7978H42.7919H42.7861H42.7803H42.7744H42.7686H42.7628H42.7569H42.7511H42.7453H42.7395H42.7337H42.7279H42.7221H42.7163H42.7105H42.7047H42.6989H42.6931H42.6873H42.6816H42.6758H42.67H42.6642H42.6585H42.6527H42.647H42.6412H42.6355H42.6297H42.624H42.6183H42.6125H42.6068H42.6011H42.5954H42.5897H42.584H42.5783H42.5726H42.5669H42.5612H42.5555H42.5498H42.5441H42.5384H42.5327H42.5271H42.5214H42.5157H42.5101H42.5044H42.4988H42.4931H42.4875H42.4818H42.4762H42.4706H42.4649H42.4593H42.4537H42.4481H42.4425H42.4369H42.4312H42.4256H42.42H42.4145H42.4089H42.4033H42.3977H42.3921H42.3865H42.381H42.3754H42.3698H42.3643H42.3587H42.3532H42.3476H42.3421H42.3365H42.331H42.3255H42.3199H42.3144H42.3089H42.3034H42.2979H42.2923H42.2868H42.2813H42.2758H42.2703H42.2649H42.2594H42.2539H42.2484H42.2429H42.2375H42.232H42.2265H42.2211H42.2156H42.2102H42.2047H42.1993H42.1938H42.1884H42.183H42.1775H42.1721H42.1667H42.1613H42.1558H42.1504H42.145H42.1396H42.1342H42.1288H42.1234H42.1181H42.1127H42.1073H42.1019H42.0965H42.0912H42.0858H42.0805H42.0751H42.0698H42.0644H42.0591H42.0537H42.0484H42.043H42.0377H42.0324H42.0271H42.0218H42.0164H42.0111H42.0058H42.0005H41.9952H41.9899H41.9846H41.9794H41.9741H41.9688H41.9635H41.9582H41.953H41.9477H41.9425H41.9372H41.9319H41.9267H41.9214H41.9162H41.911H41.9057H41.9005H41.8953H41.8901H41.8848H41.8796H41.8744H41.8692H41.864H41.8588H41.8536H41.8484H41.8432H41.8381H41.8329H41.8277H41.8225H41.8174H41.8122H41.807H41.8019H41.7967H41.7916H41.7864H41.7813H41.7762H41.771H41.7659H41.7608H41.7557H41.7505H41.7454H41.7403H41.7352H41.7301H41.725H41.7199H41.7148H41.7097H41.7046H41.6996H41.6945H41.6894H41.6844H41.6793H41.6742H41.6692H41.6641H41.6591H41.654H41.649H41.644H41.6389H41.6339H41.6289H41.6238H41.6188H41.6138H41.6088H41.6038H41.5988H41.5938H41.5888H41.5838H41.5788H41.5738H41.5689H41.5639H41.5589H41.5539H41.549H41.544H41.5391H41.5341H41.5292H41.5242H41.5193H41.5143H41.5094H41.5045H41.4996H41.4946H41.4897H41.4848H41.4799H41.475H41.4701H41.4652H41.4603H41.4554H41.4505H41.4456H41.4407H41.4359H41.431H41.4261H41.4213H41.4164H41.4116H41.4067H41.4019H41.397H41.3922H41.3873H41.3825H41.3796C40.6003 103.313 39.4707 103.221 37.9787 103.081L37.9691 103.08C35.5544 102.865 33.2948 103.127 31.2351 103.928L31.2262 103.931L31.2172 103.935C29.2659 104.716 27.5424 105.887 26.0563 107.428L26.0554 107.429C24.6752 108.862 23.4907 110.498 22.4983 112.326Z" stroke="white" stroke-width="4"/>
-            </svg>
-        </h1>
-      </div>
-      <script src="transitions.js"></script>
-      <script src="app.js"></script>
-      <script src="typewriter.js"></script>
-      <script src="start.js"></script>
-      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-      <script src="particles.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
-    integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-    <!-- Introduction Modal -->
-    <div id="intro-modal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn" onclick="toggleIntroduction()">&times;</span>
-        <h2>Introduction</h2>
-        <p>
-          Welcome to my ePortfolio. This space brings together the work I created across the semester and shows how my thinking, writing, and design choices have grown over time. Each project sits in its own context, shaped by the audience I was speaking to and the purpose I was trying to meet. Together, these pieces trace how I’ve learned to communicate with more clarity, intention, and awareness of the people on the other side of the page.
+  <main id="top">
+
+    <!-- ======================= HERO ======================= -->
+    <section class="hero" id="hero">
+      <h1 class="hero__title">
+        <span class="hero__line"><span class="hero__line-inner">DHEER</span></span>
+        <span class="hero__line hero__line--offset hero__line--serif">
+          <span class="hero__line-inner">guda</span>
+        </span>
+      </h1>
+
+      <div class="hero__row">
+        <p class="hero__intro" data-reveal>
+          a <span class="flip-words" id="flip-words">developer</span><br />
+          who builds tools that make life easier for real people.
         </p>
-        <br>
-        <p>
-          You can navigate using the menu on the left. Each artifact includes a short explanation of what it is, why I made it, and the rhetorical moves behind it. If you'd like a fuller picture of how I approach communication from visual design to written argument feel free to explore the video introduction page as well.
-        </p>
-        <div class="video-container">
-          <iframe 
-            width="560" 
-            height="315" 
-            src="https://www.youtube.com/embed/FNmdBwU5vac" 
-            title="Introduction Video" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen>
-          </iframe>
+
+        <div class="hero__actions" data-reveal>
+          <a class="btn btn--solid" href="./assets/Resume_2025.pdf" target="_blank" rel="noopener" data-magnetic>résumé <span class="btn__arrow">↗</span></a>
+          <a class="btn" href="#contact" data-magnetic>get in touch</a>
         </div>
+      </div>
+
+      <div class="hero__foot" data-reveal>
+        <div class="hero__socials">
+          <a href="https://github.com/gheetdufa" target="_blank" rel="noopener" data-magnetic data-scramble>github ↗</a>
+          <a href="https://www.linkedin.com/in/dheer-guda-a29475246/" target="_blank" rel="noopener" data-magnetic data-scramble>linkedin ↗</a>
+          <a href="mailto:gudadheer@gmail.com" data-magnetic data-scramble>email ↗</a>
+        </div>
+        <div class="hero__scroll">scroll <span class="hero__scroll-line"></span></div>
+      </div>
+    </section>
+
+    <!-- ======================= MARQUEE ======================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>developer <i>✦</i> innovator <i>✦</i> creator <i>✦</i> student <i>✦</i> </span><span>developer <i>✦</i> innovator <i>✦</i> creator <i>✦</i> student <i>✦</i> </span>
       </div>
     </div>
+
+    <!-- ======================= ABOUT ======================= -->
+    <section class="about section" id="about">
+      <div class="section__head">
+        <span class="section__num" data-reveal>01</span>
+        <h2 class="section__title"><span class="line-mask"><span>get to know</span></span><span class="line-mask"><span><em>me</em> a little</span></span></h2>
+      </div>
+
+      <div class="about__grid">
+        <figure class="about__figure" data-reveal>
+          <div class="about__ascii-wrap" role="img" aria-label="ASCII art portrait of Dheer Guda with his dog">
+            <pre class="about__ascii" aria-hidden="true">
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@L%@Lf@#%%Lt%%%%%%%%%%EtG%%Lt%@%%%%%%@@tf%%#L@@@@@@@@@@@%%@%E@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@EL@iL@%@@#1%%%%%%%%%%%#EGGLf%%%%%%%%@@tf@@@E%@@@@@@@@@@EEEGG@@@@@@@@@@#Lf@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@%%ELfL%%%###GLEtGEE1#1f@@@@@%@@@%%%%%%%%%%@@@@%%%%%%%%%@Lf@@@GE@@@@@@@@@@@@@@GG@@@@@@@@@@@t#@@@@@@@@@@@@@@@
+%%@@@%@@@@@@%EEE#Gt,ft:f1i,iiif11tfi#EEE%@@@@@@@@@@@@%%%%%%%%%%%%%%@@@@@@@##@@@@@@@@@@#@@@@%@@@@@@@@@@@f%@@@@@@@@@@@@@@@
+fGLtL@%%@@%#E%@#fGE#tft1Lt;ttLt,::;:1f1G@@#EEE#EG#@@@@@%%%@@@@%%%%%%%%@@%@@@@@@@@@@@@@%%#%@@@@@@@@@@@@@f#@@@@@@@@@@#tGEG
+%@@@%@@@%%%G@@G1GLEEf1#%f;fGGiLtt, ,,;if#GLttftt:;:tG@@@@@@@%%%%%@%%@%@%%%@%%@@@@@@@@@@@@@@@@@@@@@@@@%Etf#@@@@@@@@@%f@@%
+#@@@@@@@@ELtfttt;:i:fftt#GEEff1;1;:::;:;1titftitLffLi1GGGGLGLE%%@@%@%%%@%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%#%@@@@@@@@%1%@%
+ttL@@@@@#tLt;iifti;,1;;t;;t111;:,::i1:;1LLLGEGGffGfLGffEGfLE%%#E#EE%@@@@@@%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%1ELL
+@@@@%%#GGfftfttLLf: :iLi, ,i1it: ,::,;iitEGifEGLELE#E1;itLG1iitG#@@EE@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#@@@
+@@@ELGftLE;:t#Eftfi:1;ttfL#LLffi. . , :iti:.L#GLfftft;  ;1tE#t:, i@@%G@##%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@ELGL11LL1:.tLfLLf:;tfLtft1i1t;,,,  ..;iftffLEL1t;;t1;..;tLEGLLL:;@@EGLLLfG@@%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@fLti;:i;,:.,t11tG::tfLt:.;;;;;:,.,;  ,.;11i1;fL1i;;,,:1::fffL;fL,%@#LfLGf1@@%%%%@@@@ftfLL%@@@@@@@@@@@@@%L@@@@@@@@@@@@@
+@@fLE#GftLGt1,;;tff;::1,,;:f1t::;1i1fi. .,,;;1itti;i;t1. ;,if111LG;t%#tE%%f1%@%@@@%@@@fLEELG@@@@@@@@@%EE#Et@@@@@@@@@@@#G
+#L1fGGELGLEEffi;:1L;i: ,iii1;:,,1fttt1.,.,i;iif;f1;:.1%1; :;tt1tt%iLEELtLLft#@@%%%%@@@E##ELf@@@@@@@@@fE@%#t@@@@@@@@@@#t#
+@Gt:;:i1tfEti1;: ::,,.  .ift;:;,1i;;;;  ..,:iiitL1;:tfffi,:i11t1tif%%@@%LE@@@@@@%@@%@@GfLLft@@@@@@@@@fE@@@L@@@@@@@@@@#fL
+#11i,:;:,;iti1;;:..  ....;i:;;:.  ;,.. ..:;i;:;:1ti1t1tii:;Ltft1i11f#@@@@GE@@%%@%%@@@@@@@@%@@@@@@@@@@EtGE#t#@@@@@@@@@@GE
+@L;;:;::,::,,ii,;if;,......,:i:i..;:.,..,.:1i;,,.:;tL;;, ;1111i;;1ii1E%@@@t#%@%%%%%%@@@@@@@@@@@@@@@@@@@%###%@@@@@@@@@@EL
+@f,,,,::,, ..,:,,,;1,...... .,i1i..,.,,,, ..,..  .;11     .;;;,::i;i;fL#@@GL@%%@@@%@@@@@@@@@@@@%@@@@@@@@@@@@@@@@@@@@@@@#
+@%:,;:::::.,:,,:::,:......,,,,i;i:,....,.,,:,,:i1i::,,     ..  .,:;,;fffE@LE@@%%%@@@@@@@@%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+%@:,::..;:::::.,,,.,,...,,,,,..  :,::,.,.,,,:::;;;;;;:,  .  ...  .::,tG111GE##%%%%%%@%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@%. ::.,:.,,,::,,,:,,:::::::,,,,,,::,:::,,:,::::,,::::;,,.. ....  .,i11tif%#@@#%@@%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@E .:;::;,,:,,,,,,,,::::;:::::::,,,::;iiiii1:::..:;:::;,.,,.,,,,. .,;1i;,L@%#%#%%%%%@@E##@%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@# .,:,,,..,.:,,,,,:::::::;::::,,,:;;i1ttfff1,,:;;i;;;::::::;;,,....:i1,tG%@GG@@%%%%@@ftt111f@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@#  ,:,,,..,,:,,,,,,:::::;;;;;iii;:::::;1tftfti;;iii;;;:,,,,,,:,,. .,;1;tLGEE%@@%%%%@@fL%fE@1#@@@%%@@@G1tfff#@@@@@@@@@%@
+@#,.,,,,,,,,,,,,,,,,:,:;;;iiii11111ii;,,,:i11t1ii11iii;;:..,.. .:    ,,it11it@%%%%%%@@LG@L%@E%@@%@@@@@ff@@@t#@@@@@@@@@GL
+@L,.,,,,,,,....,,,.,:;;;iiiiii;;iii11ii;:,,;;i1111ii1iiii,.,...... ,:,.:fttG#@@%%%%%%@E#@LE@G%@@@@%@@@#L@@@1G@@@@@@@@@@@
+@L;:;,.,,..,,,,,::::;;iiiiii;;;;i1t1iiiiii;i;;;1ttt1t11i1;,,,....,..:;i:,;G1%@@%%%%%@%@@@%@@@@%@%%@@@@@GfLL1G@@@@@@@%@#f
+@#;i1i, ,,,,,,,,::;;iiiiiii;;,::,.:;ii;;iiii;;;i111111iii1:,,,...,.,;ii;.,;#f@@@%%@%%@%@@@@@%%@%@@@@@@@@@@@LG@@%%@@@@@GL
+EG;iii;,.,,,,,,,,:;iiii1111i;::i..,.;::;;i;;;;iiiiiiii;;:::,..,...,::fi,, 1G1GE@%%%%%%%%%%%%%@@%%%%@@%@@@@@%L@@@@@@@@@@@
+%Gi;:;;;:i;,,,,::;;ii1111tt1i:;;:,,;ft;:;;::;;i11111ii;::,,,,..,,::.,::,.;:#1iL@%%%%%%%%%%%%%%%@@%%@%@@@%@@@@@@@@@@@@@@@
+@#:ii:;;;:i;,,:::;iii111tttt1i;:;;;;;;::::,::;1ftt1iiiii11i;:,,,,:...,:;1,,, ;@@%%%%%%%%%%%%@%%%%%%%%@%@%@@@@@@%@@@@@@@@
+%#f;i1ti::;i::::;iiii111tttffft1i;;;;;iiii1iiitLL1:::;iii111;. ..,.. .:t;   fE@%%%%%%%%@%@@@@%%%%%%@@@@@@@@%%%@@@@%%@@@%
+@Gtt1i1111;;::;iiiiiii1tttffLLLfffftttftttt111LEGf,,.,:iiitti.    :,.,.   ;G%@@%%%%%%%@%#E#%%%%%%%%%%%@@@@@@@@%@@%@%@@@@
+%E1,itt11i;:::iiiiiiii1ttfffLLLLLLLLLft11ttttfG#EG,    i,iLf,..i ,;1tLfttL@@@@%%%%%%%@%fLEELf%@%%%%%%@@EEE##%%@%%%%@@@@@
+@@t.  ,tt1i::;111ii111i1ttffLLLfffttt1ii1tffLLE#EG,:,:LE1,f   :EE1:t1LE@Gf@@@%%%%%%%%%%f#@@%f%@%@@@%%@%fL#EGt@@%@@@@@@Gt
+@@:    ti;;;it11ii11i;i11tttttt11111111tffLLGG##GG;:;i;1tt   :;,tGEG.fE@EG%%%%%%%%%%%%%fG%@#f#@%%@%%%@%f%@@@@@@%%%%%@@%i
+%@f . .ti;;itft11111;it11i;iiiiii111tLGEEGGEEG#EEGf1iitLGi ;itEGLLGGL%@@@%%%%%%%%%%%%%%%GLLff%@%%%%%%@@fG%@##@@@%%@%@@@L
+%@# . :ti;;itf11111ii1ii;111iiii111itfLLGGEEEEGGEEfftttfG  ,it%@@@@@@@@%%%%%%%%%%%%%%%@@##@#f%@%%%%%@@@%#EEEE%@%%%%%%%@%
+%@@t  ;ii;;iff11i11i1111t1i111tttft;;;;;i1fLLLLLEEtffffLL   ifL#%%%%%%%%%%%%%%%%%%%%%%%%#GGG#@%%%%%%%%%%%@@@@%%%%%%%%%%%
+%@@E,L1ii;;ift1iii1i1i111;i11tfffft;;:;;,:i1tffLEE1tfLLLf:1G##%%%%%%%%%%%%%%%%%%%%%%%%%%%@%%@%%%%%%%%%%%@%@%%@%%%%%%%%%%
+L@@iL@1;i;;ift1ii11i1i1tii:;i1tfLLL1;;;;;:ii1tffGLi1tfLL%%@@@%%%%%%%%%%%%%%%%%%%%%@%%%%%@@@@%%@@@@%%%%%@@@%%@%%@@@@%@@%%
+G@#fEGi;;;;itt1iii1i11111ti.,,::;i11i;;;;;i11tt11iii1tfE@@@@%%%%%%%%%%%%%@@@%%%%%%%%%@%%%%%%%%@%%%%%@@@%%%%@@%%@@@@%%%@%
+f@#tfti;;;;;1t1iiiiiii1t1fLt::;i1;ii;;iii;ii111t1ii;;1L%%##@%%%%%%%%%@@@@@@@@@%%%%%%%%%%@@@@@@%@%%@%%%%@@@@@@@@@%%%%%%%%
+1@@@%i;;;;;;i11iiiiiii1t1tLGEf11ifL11iiii111ffftt1i;;f#EGLtf%%%%%%%%@@%ftfffG@@%%%%%%%%@@%@@@@@@%%%%%@%@@@@@@@@@@%%%@%%%
+#@@@Gi;;;;;;;i1iiiiiiitt1tffLGLGLfffGGffftt11fLf1i1:t#@@@@#t%%%%%%%%%@L1###L1E@%%%%@%@@%tfff1f%@@%%%%%@@#GEEE%@@@@@%%%@%
+%@@@i;;ii;;;;;iiiiiiii11111ttfffGEf1LLGEE#G. ,;i;;i1@G#@@@#1%%%%%%%%%@t1%@@@@@@%%%%%%@@L1#@@@t#@@@@%%%%@LiGGL1G@@%%@@@@%
+%@@f;;;iii;;:;;iii;;ii111ii11i111tfft1111t;.,:i;;iL@@LGtff1f%%%%%%%%%@Lif##Gf#@%%%%%%%@fiG@@@tE@%%%%@%@@G1@@@ft@%%%%%%%E
+@@G1;;iiiii;;:;;;i;;;ii1t111iiiiiii11111itfLff1i1E@@@%%%%%%@@%%%%%%%%@@ELLGfL%@%%%%%%%@%t1tffiG@%%%%%%%@#i#@@Gf@@%%%%%%#
+@Eti;iiiiii;;;;;;;;;;;i1tttfti;;;;iii11i1tfLftit%@@%%%%@@@@@%%%%%%%%%%@@@@@@@@%%%%%%%%%@@%###%@@%%%%%%@@#iLGLG%@%%%%%%%%
+#L1iiiiiiii;;;;;;;;;;;;i1tffLLti;;;;iii1tffti1G@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@%%%%%%@#i%@@%%%%%%%%%%%
+Efiiiiiiiiii;;;;;;;:;;;;i1tfLLLGLt;;;ii111iiL%@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@%%%%%%#G@@%%%%%%%%%%%%
+t1iiiiiiiiii;;;;;;;:::;:;;i11tttfLLt11ii1if%@@@%%%%%%%%@@@@@@@@%%%%%%%%%@%%@@@@@@@@@@@@%##EGGGGGG%@%%%%%%%%%%%%%%%%%%%%%
+11iiiiiiiiiii;;;;;;;::::::;;;iii1ttttttttG@@@%%%%%%%%%@@@%#%@@@%@@%%%%%%@@@@@@@%EGLLGGLLLLft1ii;1%@%%%%%%%%%@@%%%%%%%%%%
+1111i1iiiiiiii;;;;;;;::::::;;;;;ii11111LGt%@%%%%%%%%%@@#ffftG@@@@@@@@@@@@@EE#E#LffLGGEGLftt1111ii#@%%%%%%%%@@@%%%%%%%%%%
+111111iiiiiiiii;;;;;;;;;;;;i;::;;;;;;ifG@@@@%%%%%%%%%@%ftE@%#@@%%%@@@@@%%#GGGGGLLLffft11i1111111t%@%%%%%%@@#LLf#%%%%%%%%
+tt1111111i111iiii;;;;;;;iiii1iiii;iGffG#%@@%%%%%%%%%@#GtfGE#@@@%%@%%%@#GEftttGLti;:;:;iii111111t%@@%%%%%%@%;f#Ef%%%%%%%%
+ttttt11111111iii;;;;;;;iiiiiiiiiiit@%%@@@%%%%%%%%%%@@@@GG@@%%%%%%%%%%@Efffi:i1i,::::::iiiii1i1f%@@%%%%%%%#1iitE@@%%%%%%%
+ttttttt1111111iii;;i;;;iiiiiiiiii1f#L%@@@%%%%%%%%%@@@@@#E%%%%####%%%##Lfft:.,:,,;;:::i;;iii11f%@@%%%%%%%%@@fE@@@%%%%%%%%
+fffffttt111111iiiiiiiiiiiiiiiiiii1L#f1@@@@@%%%%%@%@@@%%E#####E#E#%%%#Gti1;,,:i;.::;;;;iii1ttt%@@@%%%%%%%%@@LE@@@%%%%%%%%
+ffLLffttt11111iiiiiiiiiiiiiiiiiiitG#L;L%@@@@@@%@@@@@@##E###EEEE###%%#Gfft11i;;:.:;ii;i11111f##E#%%%%%%%%%@@ft@@%%%%%%%%%
+EGGLLLffft11111iiiiiiiiiiiiiiiiiif#Ei11fGG@@@@@@@@@@%EEEE##E##%%@@%EEGLLfffiii;:;:i:;:,:;it%@%%%%%%%%%%%%@@#E@@%%%@%%%%%
+#%GEGGLLffttt11iiiiiii;;iiiiiiii;G%# ttffLt#@@@@@@@%EGEEEEEE%@@#GE##GLLffffffffft11ii1i1i;1G#%##@@@@@%%%%%%@%@%%%%%%%%%%
+1L%EEGGGGLLfft11ii;i;;;;iiiiiii1tE@% ffffif1fE#%@@@#GEEEEEE#%E##LftfLGLLLfttttft1i1ii1iiii1fE##E#%@@@@@@%@@%%%%%%%%%%%%%
+f1iG#EEEGGGLLftt1ii;;;;ii1111tfLG@@#.ffff11ft1GLLLEGGEEE#EEG#%EELffLfLLLGLLGGLLLLft111i1iitfGEEE#EE%@@@@@@@@@@@%%%%%%%%%
+Lt1:;L##EEGGGLfft1i;;;;;ii1ttfLGGE%@:fffft11LLtttLGGGE##%EE###GLGLffLGGGEEEEEGGLLLfffttt11ffLGGE##EE#%##E#%%@@@@@@@@@%%%
+GGfi..;G##EEGGGLfttii;;;ii11tffLLGE1:ffffif;1L1;1LEEE#%%%GE#%%%###EL1LLLLLGGGGLLLLLLffttttfLGGGEE#EGGGGGGEEE######@@@@@%
+1LGLi...;G##EEGGLfft1iiiiii1tfLGGGi,:tttfiL1:iLG%%EE#%%@#GLEEE#####Gt;tt1ttLLLGLGGGfLfftttfLGLGE##EGGGLLGGGGEEGGLffLG#@@
+:;LGGf;:,.;L##EEGLLfft1111ttfLGGf;:;;ii1LiLLG%@@@%GGE#%%ELLLGGEGEEEEGi1fLftii1tffLLfftftttffffGE#%#GftfffLLLfffft11i:;L@
+i:;fGttii;:,:L##EEGLLffffLLLLti;;;iiii;it1G%%@%##ELLE#%#ELLLLLGEEEGGLLf1LEEEfii11ftt1ftttttfffLLGEELt1ffft11iiiii1tLE%@%
+ti:if1;iii1i;;;fE#EEGGEEEGt:,,:;iiii;;;;tG#%%%##ELfLE#%#ELLfGGE#EELLfEt. iGGEGtiii1ttttfftffttfLG#ELt1ii;;i;ii1tfE@@@@@%
+f1:;tG;,iii;iii;;E#E###Li,::;;;iii;;1i;fE#####EELfttGE##EGLtLEE##EL1tG:   ,1fff1i11fttttttt1fLLLGGftfi,:;i1tfLEEG@@@%%%%
+Lti:iff::;1i;;i;;1Lff1::::;iiii;;:;ii1G#%%##EGGGLt1iLEEEEEELGEE%%#E1if. . ,  :;tft11tttttt1tffLLGLti11ffLGGE@@@#t%@%%%%%
+Lf1::1Gi:,;11::;i;:;;;iiiiiiii11;;i;;fE#%##EEGEGGft1fGE#E#EEE#E#%%#Lf1;      :itt1iii111ttttffffLf1L#@@@@@@ELLLLL%@%%%%%
+ffti:;ff;,,;11:.:;i;;;;iii::i11;;;;;tE####EEGE##EGLttEEEGEEEE#EGGE#EGft;. , .itt1i;;ii1111tt1ttftt#@@@@@%@@%@@@@%%%%%%%%
+tff1::1Li;,:i1i:..,:::,..,;iii:;:;fE##EE###EE#%##EGfLEEEGGE#ELGGEGGGEEGftt11tttiii;iii1111111tttf#@@%%%%%%%%%@@@@%%%%%%%
+1tt1;,:t1;: ,ii;,.:1LLLt:;;i;:;:;G#%##EE###EE#####GLfGEEGGGf  :GEGGGGEEGGLLftiiiiiiiiiiii1111tf#@@@%%%%%%%%%%%%%%%%%%%%%
+LLff1:.:;:,  ,;1LEE##E###f:::;:;LEE###EE#%####%%%%%ELfGGGGf    LEEEEGGGGLLft1i1ii11i11111iii1G@@@%%%%%%%%%%%%%%%%%%%%%%%
+@@@@@@@@@@%#EEE##EEEGGEE##;,;;:1E###EEEE#%%%%%%%##%##LtfLL: ,i1EGGEEGEGGGGLLtffttt1;:. :ittG#@@@%%%%%%%%%%%%%%%@@%%%%%%%
+%@@@@@@@@@@#EE#EEGGGGGGEEEt:;1LEE#####EEG#%@%##EE##%#ELt11, :LtELGEGEGGLGGGLfGGf11i   tGLG#@@@%%%%%%%%%%%%%%%%EE@%%%%%%%
+EEE##%%%%@@%GGGGGGGGEEGGEEG1fE#########EEG%%#EEE######EGt:   ttLfLGLGGLLGELffEGf1ii;1LGGL#@@@%i1@%%%%%%%%%%%@#,:#%%%%%%%
+%%%%#%%#%%@%%EGGGGGGGGGGGGGEGLE######EE#EGEEE##E#######Et.:t.;tLft1i1tt;tLffLELLtfLGGGGG#%%%@@%%@%%%%%%%%%%%%%##@@%%%%%%
+#%%%%%%#%%%#%%EGGGGGGEGGGGGLfG#####%#####EGfG#%EE######G1:i1iii1if;i11i::LftGGLGGLGLLLE%@%%%#ffG@%%%%%%%%%%%ii;1@%%%%%%%
+GLGE#%%%%%%###EGGGGGEGGGGGGGE#%#%########EGffGGfGEEEEEGL1,,:;;i1;i,;tt11i11t#LLftfffLE%@%%%%%@Lf@%%%%%%%%%%@%#i;#@%%%%%%
+GLLftfG##%%%%#EGGGGLGGGGGGGE#%%%##########ELLLGGGEGGGGGf1;:,, :i;;i1t1:1i;;fEff1ttffLE%@%%%%%@Ef@%%%%%%%%%%@@@Gi#@%%%%%%
+LGEEEGLfLLGEEEEEEGGGGGGEEEG#%%#####EE####%#GE#####EEEEE#Ef:. 1t;:;1i;,;f1;:LLi1tfffLG#E@@@@%@@#f@@%%%%%%%%%%GGtitE%%%%%%
+LLLfLLLLLLLffLLLGGGLGEGEEEE#%##EEEEEEE#%#GGE#EEE#####EE###G;GEGi,:i:   ,:;itf1iiffffL#EL%@@@@@#f%@%%%%%%%%%EttfttfE%%%%%
+##EGLLfLLLfLLLLLLffffLLGLf#%%#####EEE##%#fE###EEEEEELLGGGGLG##EGi:;;      .t11111tfLG#%ff@%1E%Ei#%%%%%%%%%%@@@@@@@%%%%%%
+fG#%#GLfffLLLLLGLLfttffffE#E###%###E##%%EE####EE##EGftffLLE#EEEGf1;,;;::;;;1ttt11tfLLE@GfL@fi;1G@%%%%%%%%%%%%%@@%%%%%%%%
+i11fGEEGGGGLLGGGLGLLLLLfG%#EE%%#%%########%########LiifL###EGLLGGfi ,;1tt11tfffft11fLG@@LtG@@@@@%%%%%%%%%%%%%%%%%%%%%%%%
+Lftt1tfGEGLLLLGGGEGEEGGGE@E####E#E##E#EG#####E#%###G::E###EGGGLftt,,;i1tt1tfLLffGEGtfG%@@Ltf#@@@%%%%%%%%%%%%%%%%%%%%%%%%
+LLLffffttttffffLLGGGGGLttfL%%%E#####E#GGGGE#######ELfE##EGLGGLft1,;;;i1t1tfLt1fGE#EGfL#@@EttfE@@@%%%%%%%%%%%%%@@%%%%%%%%
+111111tfftttttfLLLffftt;;t#%%%%%#%%LLEEE#%%#%####EGG###EGGGLLf1::ffti;1ttfLLfLEEEEGGLGE%@#t1ttG@@@%%%%%%%%%%%#G%%EE%%%%%
+ttfffttfLLffftfffffffft;f%%#@#%%%#GifEE#EE#%%%##ELE##EEGGLGLti,1GELti;ifLGGGEE##ELG#EEE#@%fi1LGLG%@%%%%%%%%%@;,G%;1@%%%%
+ffffttttfLfttttffLLLGLt;::iifGGEGEfL##EE###%%%ELfG###EGLLff1:;LEGGLt1ifGGEEEE#ELLfG###E#%#f1fL1;t#@@%%%%%%%%@%%@@%@@%%%%
+iiiii1iii1tt1111tfLGLfti:,. ft. .i#@%GE#%%#%%#1fEEEEEGLLff1:tEEGLLftttfftLE#%#GttGGE####%#f.;;:1ff#@%%%%%%%%@#tGf1iE@%%%
+:;;iiiii;iiiii;;;;i1111i;;::,: ;G#%%ELGL##%ELffE##GLfLffft;LEGGLff1111i1LE###ELtGGLG#####E1i:,tffff%@%%%%%%%@%L##EiL@%%%
+iiii111iii;;;;::::,,,:;;;;:,..,GE###GtLii::,:tEEGGGLfLLft1EEGLfft1;:;ifGE%#EGLtL#EGGE####Gi ,;111tfL@@%%%%%%@LitfL:t@%%%
+iiii111iiii;;;::,  :i1i:..,,,.1###%##Lt#EL;:tGGGGGGLGLftfEEGfft1: :tLGE##EEGftGG#%##E#%EG;:,,1ttffffG@%%%%%%@1t%%%i1@%%%
+. .,,:;;::,..    ,GEEGfi;:,, ,E%%##%%%%@%#ffEEEGLLLLfffLGLLffti .tEE#EEGLLfftE%#LG####%Gi  :iiiii1fLfE@%%%%%%#ffttLf%%%%
+                 fGEGLf1i;:::,L%EGEG#GL1:ifGEEGGLLGfffLfffLLti,1GE#EEEGt11f1t#%%GLE###%E,.,::;i1ttttff%@@%%%@@@@@@@@%%%%
+                :fLGGGLft1iii:ifLGti;::.;LEEEEGLGGLLLLfttLGfi1LE##EGLLLftt;1tG%%#EGEE#%#GGGLt:::..,:;1f#@%%%%%%@@@%%%%%%
+  ..........    :tfLGGGLLfLLfi,:;1i:;::iLEEEGGLGEGLGGftGGGf1G###EGGfttft; .:itL%%EGEEE%#E##%#%Ef1:;1t1iii@@%%%%%%%%%%%%%
+...........     ,tffLGGGGGGGL1::,,,:;1fGEEEGGLLGLGLLf1LLL1tG#EEGLfft11;::::. ,fE#E%%EfGEEEEE#####Et.;fLf1%@%%%%%%%%%%%%%
+............    ,tfLLGGGEGGGL1;:;itfLGEEEGGGLLGGLLLfifLf1fLGGGGLft1i;:::;iiifE##EGEL1tfGEEEEEEEEE###fi;ifG@%%%%%%%%%%%%%
+............    :fLLGGGGGGEEEGLLGGGGGGGGGGGLLLLLLftitGftLLLLLGLf11;,::,:;fE##%##ELi;tfGGEEEEEEEEEEEE###G;;%@%%%%%%%%%%%%
+...........     tfLLLLGGLEEEE#EEEEEEGEGGLLLLLLLLt1ifGffGLfLGGLti:.. .:1L##%##EGLt;itLLLLGGGGGEGGGEEEEE##EL;%%%%%%@Li%%%%
+...........    .tffLLLGGGGEEEEEEEEEE#EGGfftfLLf111fLfLLftLGLt1.  ,1LE#%####EGL1;;1fLLLLLLLGGLGGGGGLGGEEEEEG#@@@@@@#,#%%%
+............   1ffffLLLLGGGEEEEGEEEEEEGLffLLLft1tfLfLL1tLL1i;;;ifE####EGGGGft;,;tLLLLLLLLLLLLLLLGGLLfLLGGGGG@@%Lfff:E@%%
+... ........   tLffLLLGGGLGEEEGEEEEEGLLLLLGLft1tfftfftff1i1iifG####EGLfttt1;,:i1fLLLLLGLffLLLLLLLLLLfLfLLGGGE@i1LGf:G@%%
+,............  tfLLLLGGGLGGGGGGGGGGGGGLfGLLft1tfttt1tft1fLffGEEEEGLfti;ii;::i1ttfLffffLLffLLLLLfLffffLfffLLGGE1%@@@iG@%%
+,,..........   1fLLLLLGLLLLLGGGLLLLLLLLLLLLf1ttt1111tffLfffGGEGLf1ii;;;::;;ittfffftfftLfftfffffffffftfttffLLGELE@@@1f@%%
+,,..........   iLGGLLGGGLGGLfLGGGLfLffLLLLftfft1111tffttt1fLLf1ii;;::;;;;i1tttfffttfftfttttffffffffttftttttfLLGfLLLi1@%%
+:,,,.......    1LLGLLGLGGLLGGLLGLLffffLLffffff11ttftt1t11fft1i;:::;;;;;;i11tttffftttfttt1ttttfttffttftttttttfLLGLGEE%%%%
+;::,,,,...    :GGGLLGGLGLGGGLGLLLLLffLLLLffLf111tt111tfft1ii;:::::;;;iii11111ttttttttttt1ttfttttttttfttttttttffL@@@@%%%%
+::,:,,,.     tGEEGGGGGGLGLLGLLGLLLfffffLffftiii1ii11111ii;;::;;;;;;;;;;iii111111tttttttttfftttfttttttttttttttttfE@%%%%%%
+;:::,,..   1EEEEGLLLGGGGLGLfLLffftfLfffftt1ii11111iiii;;;;;;;;;iiiii;;iiiiiii11111tt1ttttfttttfffttttttffttfftffL@@%%%%%
+;::,..  :f###EEGGfLLGEGLGLGLLfftttfffffft1111111iiii;.:;ii;i;;iii11111t1iiiiiiiii111111t1tttttftfttttttfffffffLLL#@%%%%%
+:,,,,:1G##EEEGLLLLfLLEGGLLLLfffffffffft111tt1111iiiii:,;;;;iiiiii1ttffffft11iiiiii1i111111tttttttttfttftfffffLLLLE@%%%%%
+;1tLE###EEGLfLfftffLLLLfLLLffftffffftt111111111ii1tt1i;,,,;;iiiiii1tfffffffftt1iiiiiiiii111111tt1ttftffffffffLLGLL@%%%%%
+####EEGLLffftttttfftffffffffffftffttt111111iiiii1ttiiii;:, ,;;iiiii1tfftttffffft111iiiiii11i11111ttttfffffffffLGGL@@%%%%
+EEEGfftt111111tttttt11tttttffftftt1111111111i1i111iiiii;i;:. .:;iiii1tftt1ttttftttt11iiiiiiii111tttttffffffffffLGL%@%%%%
+GLff111ii11ii1i1iiii111tttt1ttttttt111111iiiiiiiiiiiiii1tt1;:, .:;iii1tttt11tttttffftt11iiiii11111tttftfffffftttff1:,;#%
+t111i1i;i;ii;;i;;;;;;i11111iii111111tt1i;;;iiiiiiiiii1t1ffft1i,,..:iii1tttt11111tttttttttt1iiii1111tttttttttt1111t1ELtE%
+1iiiii;;;;;;;;;iiiii;;;;i;;iiii1111tti,,:;:i;;;iiii11tttLLGGGLf1;:..:i111tttttt1111111ttttt111iiii11tttttt1111111tE@%%%%
+1iiiii;;;;;;;;;;;iii;;;:;;;;iii11111, .::;;;;;;ii1111tfLLGGE#%EGLt;:...,;ittttt11111ii111tttt11iiiii11111111111111E@%%%%
+1iiiiii;;;;;;;;;;;;;;;;;;;iiiiii1i,,,,.,:;;;;;ii111tffLfLEL1G#%EGEL1ii:,,::;1tt1111iiiiiii11111iiiiiiiiiiii11i11t1fff%%%
+iiii;;;;;;;;;;;;;;:;;;;;;;;;;ii;.  ,::::::;;;ii111tfLLf1fEGtGE#LGEEEEEEfftLGGLLLLLft11iiiii;iiiiii;;;;;;;;iiii1fGEGGE%%#</pre>
+          </div>
+          <figcaption class="about__caption">dheer + best friend · rendered in ascii</figcaption>
+        </figure>
+
+        <aside class="neofetch" data-reveal aria-label="about dheer">
+          <header class="neofetch__head">
+            <span class="neofetch__user">dheer<span>@</span>guda</span>
+            <span class="neofetch__rule" aria-hidden="true"></span>
+          </header>
+
+          <dl class="neofetch__list">
+            <div class="neofetch__row"><dt>OS</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>macOS, Linux</dd></div>
+            <div class="neofetch__row"><dt>Uptime</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>junior @ University of Maryland</dd></div>
+            <div class="neofetch__row"><dt>Host</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>College Park, MD</dd></div>
+            <div class="neofetch__row"><dt>Kernel</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>full-stack developer</dd></div>
+            <div class="neofetch__row"><dt>IDE</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>Cursor, VS Code</dd></div>
+
+            <div class="neofetch__gap" aria-hidden="true"></div>
+
+            <div class="neofetch__row"><dt>Languages.Programming</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>JavaScript, Python, TypeScript, C++</dd></div>
+            <div class="neofetch__row"><dt>Languages.Computer</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>HTML, CSS, SQL, JSON</dd></div>
+            <div class="neofetch__row"><dt>Languages.Real</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>English</dd></div>
+            <div class="neofetch__row"><dt>Hobbies.Software</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>hackathons, building tools that help people</dd></div>
+            <div class="neofetch__row"><dt>Hobbies.Hardware</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>sensors, accessibility interfaces</dd></div>
+
+            <div class="neofetch__gap" aria-hidden="true"></div>
+
+            <div class="neofetch__row"><dt>Email.Personal</dt><span class="neofetch__dots" aria-hidden="true"></span><dd><a href="mailto:gudadheer@gmail.com">gudadheer@gmail.com</a></dd></div>
+            <div class="neofetch__row"><dt>LinkedIn</dt><span class="neofetch__dots" aria-hidden="true"></span><dd><a href="https://www.linkedin.com/in/dheer-guda-a29475246/" target="_blank" rel="noopener">dheer-guda</a></dd></div>
+            <div class="neofetch__row"><dt>GitHub</dt><span class="neofetch__dots" aria-hidden="true"></span><dd><a href="https://github.com/gheetdufa" target="_blank" rel="noopener">gheetdufa</a></dd></div>
+
+            <div class="neofetch__gap" aria-hidden="true"></div>
+
+            <div class="neofetch__row"><dt>Experience</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>2+ years full-stack</dd></div>
+            <div class="neofetch__row"><dt>Currently</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>building <a href="https://synari.org/" target="_blank" rel="noopener">Synari</a> for clinicians</dd></div>
+            <div class="neofetch__row"><dt>Focus</dt><span class="neofetch__dots" aria-hidden="true"></span><dd>accessibility, empathy, practical impact</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ======================= WORK — horizontal gallery ======================= -->
+    <section class="work" id="work">
+      <div class="work__pin">
+        <header class="work__head">
+          <div class="work__head-title">
+            <span class="section__num">02</span>
+            <h2 class="section__title work__title"><span class="line-mask"><span>selected <em>work</em></span></span></h2>
+          </div>
+          <span class="work__hint">scroll <i>→</i></span>
+        </header>
+
+        <div class="work__track" id="work-track">
+
+          <article class="panel" data-project="synari">
+            <span class="panel__num" aria-hidden="true">01</span>
+            <button class="panel__hit" type="button" aria-haspopup="dialog" aria-label="Open Synari case study">
+              <figure class="panel__media">
+                <img src="./assets/synari-10edb4f1.png" alt="Synari — therapy practice platform" />
+              </figure>
+              <div class="panel__info">
+                <h3 class="panel__name" data-scramble>Synari</h3>
+                <p class="panel__tag">therapy practice platform — full-stack</p>
+                <span class="panel__cta">open case ↗</span>
+              </div>
+            </button>
+          </article>
+
+          <article class="panel" data-project="autoapply">
+            <span class="panel__num" aria-hidden="true">02</span>
+            <button class="panel__hit" type="button" aria-haspopup="dialog" aria-label="Open auto-apply case study">
+              <figure class="panel__media">
+                <img src="./assets/auto-apply.png" alt="auto-apply — local job-search pipeline" />
+              </figure>
+              <div class="panel__info">
+                <h3 class="panel__name" data-scramble>auto-apply</h3>
+                <p class="panel__tag">job pipeline — ingest · draft · playwright</p>
+                <span class="panel__cta">open case ↗</span>
+              </div>
+            </button>
+          </article>
+
+          <article class="panel" data-project="autotrader">
+            <span class="panel__num" aria-hidden="true">03</span>
+            <button class="panel__hit" type="button" aria-haspopup="dialog" aria-label="Open auto-trader case study">
+              <figure class="panel__media">
+                <img src="./assets/auto-trader.png" alt="auto-trader — automated swing-trading system" />
+              </figure>
+              <div class="panel__info">
+                <h3 class="panel__name" data-scramble>auto-trader</h3>
+                <p class="panel__tag">swing engine — signals · agents · robinhood</p>
+                <span class="panel__cta">open case ↗</span>
+              </div>
+            </button>
+          </article>
+
+          <article class="panel" data-project="signlang">
+            <span class="panel__num" aria-hidden="true">04</span>
+            <button class="panel__hit" type="button" aria-haspopup="dialog" aria-label="Open SignLang case study">
+              <figure class="panel__media">
+                <img src="./assets/Translator.png" alt="SignLang — accessible sign-language interface" />
+              </figure>
+              <div class="panel__info">
+                <h3 class="panel__name" data-scramble>SignLang</h3>
+                <p class="panel__tag">one-handed sign-language interface — ml</p>
+                <span class="panel__cta">open case ↗</span>
+              </div>
+            </button>
+          </article>
+
+          <article class="panel" data-project="audit">
+            <span class="panel__num" aria-hidden="true">05</span>
+            <button class="panel__hit" type="button" aria-haspopup="dialog" aria-label="Open Audit.AI case study">
+              <figure class="panel__media">
+                <img src="./assets/project-2.png" alt="Audit.AI — ai-art detection extension" />
+              </figure>
+              <div class="panel__info">
+                <h3 class="panel__name" data-scramble>Audit.AI</h3>
+                <p class="panel__tag">ai-art detector — chrome extension</p>
+                <span class="panel__cta">open case ↗</span>
+              </div>
+            </button>
+          </article>
+
+          <article class="panel" data-project="rant">
+            <span class="panel__num" aria-hidden="true">06</span>
+            <button class="panel__hit" type="button" aria-haspopup="dialog" aria-label="Open Rant.AI case study">
+              <figure class="panel__media">
+                <img src="./assets/project-3.jpg" alt="Rant.AI — ai journaling companion" />
+              </figure>
+              <div class="panel__info">
+                <h3 class="panel__name" data-scramble>Rant.AI</h3>
+                <p class="panel__tag">ai journaling companion</p>
+                <span class="panel__cta">open case ↗</span>
+              </div>
+            </button>
+          </article>
+
+          <article class="panel" data-project="tutorwiz">
+            <span class="panel__num" aria-hidden="true">07</span>
+            <button class="panel__hit" type="button" aria-haspopup="dialog" aria-label="Open tutorWiz case study">
+              <figure class="panel__media">
+                <img src="./assets/tutorWiz.png" alt="tutorWiz — intelligent tutoring platform" />
+              </figure>
+              <div class="panel__info">
+                <h3 class="panel__name" data-scramble>tutorWiz</h3>
+                <p class="panel__tag">intelligent tutoring platform</p>
+                <span class="panel__cta">open case ↗</span>
+              </div>
+            </button>
+          </article>
+
+          <article class="panel" data-project="asktestudo">
+            <span class="panel__num" aria-hidden="true">08</span>
+            <button class="panel__hit" type="button" aria-haspopup="dialog" aria-label="Open askTestudo case study">
+              <figure class="panel__media">
+                <img src="./assets/askTestudo.png" alt="askTestudo — course registration assistant" />
+              </figure>
+              <div class="panel__info">
+                <h3 class="panel__name" data-scramble>askTestudo</h3>
+                <p class="panel__tag">umd course registration assistant</p>
+                <span class="panel__cta">open case ↗</span>
+              </div>
+            </button>
+          </article>
+
+          <article class="panel panel--outro">
+            <p class="panel__more-kicker">want the full archive?</p>
+            <a class="panel__more" href="https://github.com/gheetdufa" target="_blank" rel="noopener" data-magnetic>
+              more on <em>github</em> ↗
+            </a>
+          </article>
+
+        </div>
+
+        <footer class="work__progress" aria-hidden="true">
+          <span class="work__counter" id="work-counter">01 / 08</span>
+          <div class="work__bar"><span class="work__bar-fill" id="work-bar-fill"></span></div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- ======================= CONTACT ======================= -->
+    <section class="contact section" id="contact">
+      <div class="section__head">
+        <span class="section__num" data-reveal>03</span>
+        <h2 class="section__title"><span class="line-mask"><span>let’s build</span></span><span class="line-mask"><span>something <em>together</em></span></span></h2>
+      </div>
+
+      <a class="contact__email" href="mailto:gudadheer@gmail.com" data-magnetic>
+        <span class="contact__email-text">gudadheer@gmail.com</span>
+        <span class="contact__email-arrow">↗</span>
+      </a>
+
+      <div class="contact__links">
+        <a href="https://www.linkedin.com/in/dheer-guda-a29475246/" target="_blank" rel="noopener" class="contact__link" data-reveal data-magnetic data-scramble>linkedin ↗</a>
+        <a href="https://github.com/gheetdufa" target="_blank" rel="noopener" class="contact__link" data-reveal data-magnetic data-scramble>github ↗</a>
+        <a href="./assets/Resume_2025.pdf" target="_blank" rel="noopener" class="contact__link" data-reveal data-magnetic data-scramble>résumé ↗</a>
+      </div>
+
+      <footer class="footer">
+        <span>© 2026 dheer guda — designed & built by me</span>
+        <button class="footer__top" id="back-to-top" type="button" data-magnetic>back to top ↑</button>
+      </footer>
+    </section>
+
+    <!-- ======================= GUESTBOOK / EASTER WALL ======================= -->
+    <section class="guestbook" id="guestbook" aria-label="visitor marks">
+      <p class="guestbook__cipher" aria-hidden="true">
+        <span>0x02</span>·clk(<em>DG</em>)⇒/dev/tty
+      </p>
+      <div class="guestbook__wall" id="guestbook-wall"></div>
+      <p class="guestbook__empty" id="guestbook-empty">no marks yet</p>
+    </section>
+  </main>
+
+  <!-- ======================= EASTER TERMINAL ======================= -->
+  <div class="tty" id="tty" role="dialog" aria-modal="true" aria-hidden="true" aria-label="hidden terminal">
+    <div class="tty__panel" data-lenis-prevent>
+      <header class="tty__bar">
+        <div class="tty__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        <span class="tty__title">dg@portfolio — zsh</span>
+        <button class="tty__x" id="tty-close" type="button" aria-label="close terminal">✕</button>
+      </header>
+      <div class="tty__body" id="tty-body"></div>
+    </div>
+  </div>
+
+  <!-- ======================= PROJECT OVERLAY ======================= -->
+  <div class="overlay" id="project-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="overlay__inner" id="overlay-inner" data-lenis-prevent>
+      <button class="overlay__close" id="overlay-close" type="button" data-magnetic>close ✕</button>
+      <div class="overlay__content" id="overlay-content"><!-- injected --></div>
+    </div>
+  </div>
+
+  <!-- CSS fallback when WebGL is unavailable -->
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__orb ambient__orb--1"></div>
+    <div class="ambient__orb ambient__orb--2"></div>
+    <div class="ambient__orb ambient__orb--3"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="shader.js"></script>
+  <script src="intro.js"></script>
+  <script src="main.js"></script>
+  <script src="easter.js"></script>
 </body>
 </html>
