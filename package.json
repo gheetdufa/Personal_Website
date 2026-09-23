@@ -1,0 +1,13 @@
+{
+  "name": "a-room-of-my-own",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "happy-dom": "^20.14.5"
+  }
+}

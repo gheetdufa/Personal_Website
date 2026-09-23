@@ -1,0 +1,88 @@
+[
+  {
+    "game": "Elden Ring",
+    "width": 1280,
+    "height": 720,
+    "source_page": "https://en.bandainamcoent.eu/elden-ring/elden-ring",
+    "image_url": "https://static.bandainamcoent.eu/high/elden-ring/elden-ring/03-news/elden-ring-launch-trailer-thumbnail.jpg",
+    "description": "Official launch trailer thumbnail showing Rennala's moon arena, with Elden Ring title lower left.",
+    "copyright": "ELDEN RING trademark and copyright Bandai Namco Entertainment Inc.; copyright 2022 FromSoftware, Inc."
+  },
+  {
+    "game": "Halo Infinite",
+    "width": 616,
+    "height": 353,
+    "source_page": "https://store.steampowered.com/app/1240440/Halo_Infinite/",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1240440/e40761e04c889473e048bfb1e0fa691ef9735900/capsule_616x353.jpg?t=1774464322",
+    "description": "Official title capsule showing a group of Spartans with Halo Infinite Multiplayer logo.",
+    "copyright": "Copyright 2022 Microsoft Corporation. All rights reserved. Halo Infinite is a trademark of Microsoft Corporation."
+  },
+  {
+    "game": "Hollow Knight",
+    "width": 616,
+    "height": 353,
+    "source_page": "https://store.steampowered.com/app/367520/Hollow_Knight/",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/f30cc19e25cce7e46cd7dfe89f3ee7852e634232/capsule_616x353.jpg?t=1776125684",
+    "description": "Official title capsule with white Hollow Knight wordmark and the Knight against a blue background.",
+    "copyright": "Hollow Knight is copyright Team Cherry 2019, per Steam page."
+  },
+  {
+    "game": "Clair Obscur: Expedition 33",
+    "width": 1200,
+    "height": 630,
+    "source_page": "https://www.expedition33.com/",
+    "image_url": "https://static.wixstatic.com/media/52610a_b6c798488cc14f1a9859c1225a96c08e~mv2.jpg/v1/fill/w_1200,h_630,al_c/52610a_b6c798488cc14f1a9859c1225a96c08e~mv2.jpg",
+    "description": "Official website sharing image with the large Expedition 33 logo above expedition characters and monolith.",
+    "copyright": "Developer Sandfall Interactive; publisher Kepler Interactive. No explicit asset reuse license found on source page."
+  },
+  {
+    "game": "Elden Ring",
+    "file": "elden-ring-logo.png",
+    "width": 612,
+    "height": 93,
+    "source_page": "https://www.eldenring.jp/",
+    "image_url": "https://media.fromsoftware.jp/eldenring/resources/images/top/pc/logo.png",
+    "description": "Official game logo displayed prominently on the in-room TV.",
+    "copyright": "FromSoftware / Bandai Namco Entertainment"
+  },
+  {
+    "game": "Halo Infinite",
+    "file": "halo-logo.png",
+    "width": 512,
+    "height": 143,
+    "source_page": "https://www.halowaypoint.com/halo-infinite",
+    "image_url": "https://www.halowaypoint.com/static/halo-infinite/halo-infinite-logo.png",
+    "description": "Official game logo displayed prominently on the in-room TV.",
+    "copyright": "Microsoft / Halo Studios"
+  },
+  {
+    "game": "Hollow Knight",
+    "file": "hollow-knight-logo.png",
+    "width": 800,
+    "height": 317,
+    "source_page": "https://www.hollowknight.com/",
+    "image_url": "https://images.squarespace-cdn.com/content/v1/606d159a953867291018f801/1617773200235-37F2RZTI6FCZ7Q2C27L0/logo_main.png",
+    "description": "Official game logo displayed prominently on the in-room TV.",
+    "copyright": "Team Cherry"
+  },
+  {
+    "game": "Clair Obscur: Expedition 33",
+    "file": "expedition-33-logo.png",
+    "width": 1200,
+    "height": 657,
+    "source_page": "https://www.expedition33.com/",
+    "image_url": "https://static.wixstatic.com/media/52610a_cb0331e7ebdb41308128181020c17ad8~mv2.png/v1/crop/x_0,y_2417,w_10000,h_5477/fill/w_1200,h_657,al_c,q_90/EX33_Logo_HighRez.png",
+    "description": "Official game logo displayed prominently on the in-room TV.",
+    "copyright": "Sandfall Interactive / Kepler Interactive"
+  },
+  {
+    "game": "The Legend of Zelda: Tears of the Kingdom",
+    "file": "zelda-totk-logo.png",
+    "width": 1060,
+    "height": 757,
+    "source_page": "https://www.nintendo.com/jp/zelda/totk/guide/en/index.html",
+    "image_url": "https://www.nintendo.com/jp/zelda/totk/guide/assets/img/common/logo_totk_en.png",
+    "description": "Official game logo displayed prominently on the in-room TV.",
+    "copyright": "Nintendo"
+  }
+]

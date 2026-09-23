@@ -1,640 +1,244 @@
-/* ============================================================
-   MAIN — smooth scroll, hero, scramble hovers, velocity
-   marquee, word reveals, horizontal work gallery, overlay
-   ============================================================ */
-
-(function () {
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  /* ---------------- smooth scroll (Lenis) ---------------- */
-  let lenis = null;
-  if (!prefersReduced && typeof Lenis !== "undefined") {
-    lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1 });
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
+import {installBedUI} from './bed-ui.js';
+import {installIntroUI} from './room-intro.js';
+import {ROOM_BLUE} from './room-time.js';
+import {installProfileUI} from './profile-ui.js';
+import {installDeskUI} from './desk-ui.js';
+import {installRoomPanels} from './room-panels.js';
+import {createWorld} from './world.js';
+import {installGalleryUI} from './gallery-ui.js';
+import {ROOMS,doorDestination,interactionDistance} from './rooms.js';
+import {findPath,moveWithCollisions} from './navigation.js';
+const container=document.querySelector('#scene');
+const dialog=document.querySelector('#detail');
+const detailBody=document.querySelector('#detail-body');
+const interact=document.querySelector('#interact');
+const giveTreat=document.querySelector('#give-treat');
+let hotspots=[];
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let roomPanels,deskUI,bedUI,profileUI,introUI;
+const hasPanel=()=>dialog.open||Boolean(profileUI?.open)||Boolean(introUI?.busy)||Boolean(roomPanels?.open)||Boolean(deskUI?.busy)||Boolean(bedUI?.busy)||Boolean(world?.interactingWithZuko)||Boolean(world?.pullup.busy);
+const contents={
+ help:{tag:'A LITTLE FIELD GUIDE',title:'Take a look around.',body:'There’s no rush. This little room is yours to explore.',items:[['Walk around','Use WASD or the arrow keys. You can also click or tap an open spot on the floor.'],['Discover something','Hover over a small marker to see its label. Click or tap it to walk over, or press E when you’re close to an object.'],['The wall gallery','Walk to the paintings until their frames glow, then press E. Scroll, swipe, or use the arrow keys to browse. Escape returns the canvas to the wall.'],['Through the door','Click the marker above the doorway or walk into it. The door in the living room brings you back.'],['Make yourself at home','Click the computer to pull up a chair. Click a desktop icon on the right monitor to launch its project window, with a short description, image, and project link. Close the window or press Escape to return to the desktop; press Escape again to leave the chair. Click the bed to hop up and pull out my personal dashboard on a tablet. Escape returns you to the room. In the living room, click the bookshelf to zoom in, then pick a book to open its article. Escape returns a book to the shelf, then returns you to the room. Pet Zuko with E, or give him a treat with T when nearby. Sit on the couch and he’ll join you. Try the pull-up bar for a set; E or Escape finishes early. Click the Switch or TV to turn it on. Each click changes the game on its screen. Press E or a movement key to stand up.'],['Stay a while','The clock uses your local time, and evening lighting turns on automatically from 7 PM to 7 AM. The moon button lets you change it until the next scheduled switch. Reset returns you to an open spot in the current room.']],note:'On a phone, use the arrow buttons to move. Press Escape or tap outside a panel to close it.'}
+};
+let world;
+let currentRoom='bedroom';
+let keys=new Set(),path=[],pending=null,nearby=null,angle=0,toastTimer;
+let roomTransition=null;
+let selectedArtwork=0;
+const transitionCover=document.querySelector('#room-transition');
+function toast(message){
+  const el=document.querySelector('#toast');el.textContent=message;el.classList.add('visible');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),2600);
+}
+function clearMovement(){
+  keys.clear();path=[];pending=null;
+  document.querySelectorAll('[data-direction]').forEach(b=>b.classList.remove('pressed'));
+  if(world)world.marker.visible=false;
+}
+function openPanel(id){
+  if(roomTransition||world?.gallery.busy||hasPanel())return;
+  const data=contents[id];if(!data)return;
+  document.querySelector('#detail-label').textContent=data.tag;
+  detailBody.innerHTML=`<h2 id="detail-title">${data.title}</h2><p>${data.body}</p>${data.items.map(([title,text],i)=>`<div class="panel-item"><span class="item-index">0${i+1}</span><div><h3>${title}</h3><p>${text}</p></div></div>`).join('')}<p class="panel-note">${data.note}</p>`;
+  clearMovement();interact.hidden=true;dialog.showModal();
+}
+function closePanel(){dialog.close();container.focus({preventScroll:true});}
+document.querySelector('#help-button').onclick=()=>openPanel('help');
+document.querySelector('#close-detail').onclick=closePanel;
+document.querySelector('#return-to-room').onclick=closePanel;
+dialog.addEventListener('click',event=>{const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closePanel();});
+dialog.addEventListener('close',()=>{keys.clear();container.focus({preventScroll:true});});
+profileUI=installProfileUI({canOpen:()=>!hasPanel()&&!roomTransition&&!world?.gallery.busy,onEnter:clearMovement,onExit:clearMovement});
+try{
+  world=createWorld(container);document.querySelector('#loading').hidden=true;
+}catch(error){
+  console.error(error);document.querySelector('#loading').hidden=true;document.querySelector('#webgl-error').hidden=false;
+  document.body.classList.remove('intro-playing','intro-loading');
+  document.querySelector('#hotspots').hidden=true;document.querySelector('#touch-controls').hidden=true;
+}
+if(world){
+  introUI=installIntroUI(world,{reduced,onEnter(){clearMovement();container.inert=true;document.querySelector('.header').inert=true;document.querySelector('.profile-dock').inert=true;},onExit(){container.inert=false;document.querySelector('.header').inert=false;document.querySelector('.profile-dock').inert=false;container.focus({preventScroll:true});}});
+  deskUI=installDeskUI(world,{onEnter(){clearMovement();nearby=null;interact.hidden=true;document.body.classList.add('using-desk');document.querySelector('#experience').inert=true;document.querySelector('.header').inert=true;},onExit(){clearMovement();document.body.classList.remove('using-desk');document.querySelector('#experience').inert=false;document.querySelector('.header').inert=false;container.focus({preventScroll:true});}});
+  bedUI=installBedUI(world,{onEnter(){clearMovement();nearby=null;interact.hidden=true;document.body.classList.add('using-bed');document.querySelector('#experience').inert=true;document.querySelector('.header').inert=true;},onExit(){clearMovement();document.body.classList.remove('using-bed');document.querySelector('#experience').inert=false;document.querySelector('.header').inert=false;container.focus({preventScroll:true});}});
+  roomPanels=installRoomPanels({world,onEnter(){clearMovement();nearby=null;interact.hidden=true;document.body.classList.add('using-library');document.querySelector('#experience').inert=true;document.querySelector('.header').inert=true;},onExit(){clearMovement();document.body.classList.remove('using-library');document.querySelector('#experience').inert=false;document.querySelector('.header').inert=false;container.focus({preventScroll:true});}});
+  const galleryUI=installGalleryUI(world,{onEnter(){clearMovement();nearby=null;interact.hidden=true;},onExit(){clearMovement();container.focus({preventScroll:true});}});
+  function walkTo(target,id=null){
+    if(roomTransition||hasPanel()||world.gallery.busy)return false;
+    if(id==='projects'&&interactionDistance(ROOMS.bedroom.stations.projects,world.player.position)<1){activateStation(id);return true;}
+    world.stand();
+    const route=findPath(world.player.position,target,ROOMS[currentRoom].obstacles);
+    if(!route.length){toast('Pick an open spot on the floor.');return false;}
+    path=route;pending=id;world.marker.position.set(target.x,.086,target.z);world.marker.visible=true;
+    container.focus({preventScroll:true});return true;
   }
-
-  function scrollTo(target) {
-    if (lenis) lenis.scrollTo(target, { offset: 0, duration: 1.4 });
-    else document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
+  function updateRoomUI(){
+    const room=ROOMS[currentRoom];
+    const parent=document.querySelector('#hotspots');parent.replaceChildren();
+    for(const [id,station] of Object.entries(room.stations)){
+      if(station.hideHotspot)continue;
+      const button=document.createElement('button');button.className='hotspot'+(station.type==='door'?' door-hotspot':station.type==='gallery'?' gallery-hotspot':'');
+      button.dataset.spot=id;button.setAttribute('aria-label',station.label);
+      const dot=document.createElement('span');dot.className='spot-dot';dot.setAttribute('aria-hidden','true');
+      const label=document.createElement('span');label.className='spot-label';label.textContent=station.shortLabel;
+      button.append(dot,label);
+      button.onclick=()=>{if(station.type==='gallery')selectedArtwork=world.gallery.items.findIndex(item=>item.group===station.galleryGroup);walkTo(station.position,id);};parent.append(button);
+    }
+    hotspots=[...parent.querySelectorAll('.hotspot')];
+    document.querySelector('.room-badge').textContent='ROOM 0'+room.number;
+    document.querySelector('.caption-number').textContent=room.number;
+    document.querySelector('.room-caption strong').textContent=room.title;
+    document.querySelector('.room-caption div>span').textContent=room.caption;
+    container.setAttribute('aria-label',room.title+'. Use arrow keys or WASD to walk, E to interact, or walk into the connecting doorway to change rooms.');
+    document.body.dataset.room=currentRoom;
+    document.querySelector('meta[name=theme-color]').content=ROOM_BLUE;
   }
-
-  document.querySelectorAll('a[href^="#"]').forEach((a) => {
-    if (a.id === "nav-logo") return; // easter.js owns multi-click on DG
-    a.addEventListener("click", (e) => {
-      const id = a.getAttribute("href");
-      if (id.length > 1 && document.querySelector(id)) {
-        e.preventDefault();
-        scrollTo(id);
-      }
-    });
+  function beginRoomChange(destination){
+    if(roomTransition||world.gallery.busy||!ROOMS[destination]||destination===currentRoom)return;
+    clearMovement();nearby=null;interact.hidden=true;
+    roomTransition={destination,elapsed:0,switched:false};
+    document.body.classList.add('changing-room');
+    document.querySelector('#room-announcement').textContent='Entering '+ROOMS[destination].title.toLowerCase()+'.';
+  }
+  function advanceRoomChange(dt){
+    if(!roomTransition)return;
+    roomTransition.elapsed+=dt;
+    const duration=reduced?.06:.72;
+    const progress=Math.min(1,roomTransition.elapsed/duration);
+    transitionCover.style.opacity=String(progress<.5?progress*2:(1-progress)*2);
+    if(progress>=.5&&!roomTransition.switched){
+      currentRoom=roomTransition.destination;world.setRoom(currentRoom);angle=0;
+      clearMovement();updateRoomUI();roomTransition.switched=true;
+    }
+    if(progress>=1){roomTransition=null;document.body.classList.remove('changing-room');transitionCover.style.opacity='0';container.focus({preventScroll:true});}
+  }
+  function activateStation(id){
+    if(id==='finish-set'){world.pullup.finish();return;}
+    if(world.gallery.busy||hasPanel()||roomTransition)return;
+    if(id==='stand'){world.stand();clearMovement();angle=Math.PI;return;}
+    if(id==='zuko'||id==='treat'){
+      if(!world.zuko)return;
+      if(!world.interactZuko(id==='treat'?'treat':'pet')){toast('Walk up to Zuko to say hello.');return;}
+      clearMovement();document.querySelector('#room-announcement').textContent=id==='treat'?'A little treat for Zuko.':'Giving Zuko some scritches.';return;
+    }
+    if(id==='switch'){const game=world.tv?.cycle(reduced);if(game)document.querySelector('#room-announcement').textContent='Now on TV: '+game.title+'. Click again for the next game.';return;}
+    const station=ROOMS[currentRoom].stations[id];if(!station)return;
+    if(station.type==='gallery'){
+      const item=world.gallery.items[selectedArtwork];
+      galleryUI.open(item?.group===station.galleryGroup?selectedArtwork:world.gallery.items.findIndex(art=>art.group===station.galleryGroup));
+    }else if(station.type==='door')walkTo(station.position,id);
+    else if(id==='projects')deskUI.launch();
+    else if(id==='about')bedUI.launch();
+    else if(id==='library')roomPanels.show(id);
+    else if(id==='pullup'){clearMovement();world.stand();world.exercise();}
+    else if(station.type==='seat'){clearMovement();world.sit();angle=Math.PI;toast('Comfy. Press E or move to stand up.');}
+    else if(station.type==='cheer'){clearMovement();world.cheer();toast('Forza Ferrari! 🏎️  Go Ferrari!');}
+    else openPanel(id);
+  }
+  updateRoomUI();
+  container.addEventListener('pointerdown',event=>{
+    if(event.button!==0||roomTransition||world.gallery.busy||hasPanel())return;
+    const object=world.pickInteraction(event.clientX,event.clientY);
+    if(object==='switch'){activateStation('switch');return;}
+    if(object==='zuko'){activateStation('zuko');return;}
+    if(object&&ROOMS[currentRoom].stations[object]){walkTo(ROOMS[currentRoom].stations[object].position,object);return;}
+    const artwork=world.pickArtwork(event.clientX,event.clientY);
+    if(artwork!==null){const id=world.gallery.items[artwork].group==='small'?'prints':'gallery';selectedArtwork=artwork;walkTo(ROOMS.bedroom.stations[id].position,id);return;}
+    const point=world.floorPoint(event.clientX,event.clientY);
+    if(point&&Math.abs(point.x)<3.8&&Math.abs(point.z)<3.8)walkTo(point);
+    container.focus({preventScroll:true});
   });
-  document.getElementById("back-to-top").addEventListener("click", () => scrollTo("#top"));
-
-  window.addEventListener("load", () => ScrollTrigger.refresh());
-
-  /* ---------------- custom cursor ---------------- */
-  if (finePointer && !prefersReduced) {
-    const dot = document.getElementById("cursor");
-    const ring = document.getElementById("cursor-ring");
-    const pos = { x: innerWidth / 2, y: innerHeight / 2 };
-    const ringPos = { x: pos.x, y: pos.y };
-
-    window.addEventListener("mousemove", (e) => {
-      pos.x = e.clientX;
-      pos.y = e.clientY;
-      dot.style.transform = `translate(${pos.x}px, ${pos.y}px) translate(-50%,-50%)`;
-    });
-    gsap.ticker.add(() => {
-      ringPos.x += (pos.x - ringPos.x) * 0.16;
-      ringPos.y += (pos.y - ringPos.y) * 0.16;
-      ring.style.transform = `translate(${ringPos.x}px, ${ringPos.y}px) translate(-50%,-50%)`;
-    });
-
-    const hoverables = "a, button, [data-magnetic]";
-    document.addEventListener("mouseover", (e) => {
-      if (e.target.closest(hoverables)) ring.classList.add("is-hover");
-    });
-    document.addEventListener("mouseout", (e) => {
-      if (e.target.closest(hoverables)) ring.classList.remove("is-hover");
-    });
-  }
-
-  /* ---------------- magnetic elements ---------------- */
-  if (finePointer && !prefersReduced) {
-    document.querySelectorAll("[data-magnetic]").forEach((el) => {
-      const strength = 0.35;
-      el.addEventListener("mousemove", (e) => {
-        const r = el.getBoundingClientRect();
-        const x = e.clientX - (r.left + r.width / 2);
-        const y = e.clientY - (r.top + r.height / 2);
-        gsap.to(el, { x: x * strength, y: y * strength, duration: 0.4, ease: "power2.out" });
-      });
-      el.addEventListener("mouseleave", () => {
-        gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.4)" });
-      });
-    });
-  }
-
-  /* ---------------- local time in nav ---------------- */
-  const timeEl = document.getElementById("local-time");
-  function tickTime() {
-    timeEl.textContent = new Date().toLocaleTimeString("en-US", {
-      hour: "2-digit", minute: "2-digit",
-      timeZone: "America/New_York",
-    }) + " ET";
-  }
-  tickTime();
-  setInterval(tickTime, 30000);
-
-  /* ---------------- text scramble utility ---------------- */
-  const SCRAMBLE_POOL = "abcdefghjkmnpqrstuvwxyz0123456789!<>-_\\/[]{}=+*^?#";
-  const scrambleHandles = new WeakMap();
-
-  function lockScrambleWidth(el) {
-    el.style.display = "inline-block";
-    el.style.whiteSpace = "nowrap";
-    el.style.overflow = "hidden";
-    el.style.width = "";
-    el.style.width = `${Math.ceil(el.getBoundingClientRect().width)}px`;
-  }
-
-  function scrambleTo(el, target, duration = 480) {
-    const prev = scrambleHandles.get(el);
-    if (prev) cancelAnimationFrame(prev);
-    const start = performance.now();
-    function frame(now) {
-      const p = Math.min(1, (now - start) / duration);
-      const reveal = Math.floor(p * target.length);
-      let out = "";
-      for (let i = 0; i < target.length; i++) {
-        if (i < reveal || target[i] === " ") out += target[i];
-        else out += SCRAMBLE_POOL[(Math.random() * SCRAMBLE_POOL.length) | 0];
-      }
-      el.textContent = out;
-      if (p < 1) scrambleHandles.set(el, requestAnimationFrame(frame));
-      else {
-        el.textContent = target;
-        scrambleHandles.delete(el);
-      }
+  window.addEventListener('keydown',event=>{
+    if(world.pullup.busy){if(['Escape','e','E'].includes(event.key)){event.preventDefault();world.pullup.finish();}return;}
+    if(hasPanel()||roomTransition||world.gallery.busy)return;
+    const k=event.key.toLowerCase();
+    if(k==='t'){event.preventDefault();if(!event.repeat)activateStation('treat');return;}
+    if(world.seated&&['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright','e','escape'].includes(k)){
+      event.preventDefault();if(event.repeat)return;world.stand();clearMovement();angle=Math.PI;if(k==='e'||k==='escape')return;
     }
-    scrambleHandles.set(el, requestAnimationFrame(frame));
-  }
-
-  if (finePointer && !prefersReduced) {
-    const wireScramble = () => {
-      document.querySelectorAll("[data-scramble]").forEach((el) => {
-        if (el.dataset.scrambleBound) return;
-        el.dataset.scrambleBound = "1";
-        lockScrambleWidth(el);
-        const original = el.textContent;
-        const host = el.closest("a, button") || el;
-        host.addEventListener("mouseenter", () => scrambleTo(el, original));
-      });
-    };
-    if (document.fonts?.ready) document.fonts.ready.then(wireScramble);
-    else wireScramble();
-  }
-
-  /* ---------------- hero: split title into live letters ---------------- */
-  let heroReady = false;
-
-  document.querySelectorAll(".hero__line-inner").forEach((line) => {
-    const frag = document.createDocumentFragment();
-    [...line.childNodes].forEach((node) => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        node.textContent.split("").forEach((ch) => {
-          const s = document.createElement("span");
-          s.className = "hero__char";
-          s.textContent = ch;
-          frag.appendChild(s);
-        });
-      } else {
-        node.classList.add("hero__char");
-        frag.appendChild(node);
-      }
-    });
-    line.innerHTML = "";
-    line.appendChild(frag);
+    if(['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright','e'].includes(k)){
+      event.preventDefault();
+      if(k==='e'){if(nearby&&!event.repeat)activateStation(nearby);return;}
+      keys.add(k);path=[];pending=null;world.marker.visible=false;
+    }
   });
-
-  const heroChars = gsap.utils.toArray(".hero__char");
-
-  function popChar(ch) {
-    gsap.to(ch, {
-      yPercent: -16,
-      rotation: gsap.utils.random(-12, 12),
-      duration: 0.18,
-      ease: "power2.out",
-      overwrite: "auto",
-      onComplete: () => {
-        gsap.to(ch, { yPercent: 0, rotation: 0, duration: 0.9, ease: "elastic.out(1, 0.35)" });
-      },
+  window.addEventListener('keyup',event=>keys.delete(event.key.toLowerCase()));
+  window.addEventListener('blur',()=>keys.clear());
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)keys.clear();});
+  const touchMapping={up:'arrowup',down:'arrowdown',left:'arrowleft',right:'arrowright'};
+  document.querySelectorAll('[data-direction]').forEach(button=>{
+    const key=touchMapping[button.dataset.direction];
+    button.addEventListener('pointerdown',event=>{
+      event.preventDefault();if(roomTransition||world.gallery.busy||hasPanel())return;
+      world.stand();
+      button.setPointerCapture(event.pointerId);keys.add(key);path=[];pending=null;world.marker.visible=false;button.classList.add('pressed');
     });
-    gsap.fromTo(ch, { color: "#57b3dc" }, { color: "#e9eef2", duration: 0.6, clearProps: "color" });
-  }
-
-  if (finePointer && !prefersReduced) {
-    heroChars.forEach((ch) => {
-      ch.addEventListener("mouseenter", () => {
-        if (heroReady) popChar(ch);
-      });
-    });
-  }
-
-  /* ---------------- hero entrance (waits for intro) ---------------- */
-  // chars churn through glitch glyphs while they rise, locking left to
-  // right — same decode language as the intro and the ascii portrait
-  function heroDecode() {
-    const UPPER = "#%&XKWMNEHRD0147";
-    const LOWER = "abdegqhnu01479";
-    heroChars.forEach((ch, i) => {
-      const finalChar = ch.textContent;
-      const pool = /[a-z]/.test(finalChar) ? LOWER : UPPER;
-      ch.style.width = ch.offsetWidth + "px"; // freeze layout while churning
-      const lockAt = performance.now() + 420 + i * 70;
-      (function churn() {
-        if (performance.now() >= lockAt) {
-          ch.textContent = finalChar;
-          ch.style.width = "";
-          return;
-        }
-        ch.textContent = pool[(Math.random() * pool.length) | 0];
-        setTimeout(churn, 44);
-      })();
-    });
-  }
-
-  // after settling, the title keeps breathing: a slow per-char drift
-  // plus a random character popping every few seconds
-  function heroIdle() {
-    heroChars.forEach((ch, i) => {
-      gsap.to(ch, {
-        y: gsap.utils.random(2.5, 4.5),
-        duration: gsap.utils.random(1.7, 2.5),
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-        delay: i * 0.13,
-      });
-    });
-    setInterval(() => {
-      if (!document.hidden) popChar(heroChars[(Math.random() * heroChars.length) | 0]);
-    }, 3400);
-  }
-
-  function heroEntrance() {
-    const tl = gsap.timeline({
-      defaults: { ease: "power4.out" },
-      onComplete: () => { heroReady = true; heroIdle(); },
-    });
-    tl.to(".hero__char", { y: 0, rotate: 0, duration: 0.9, stagger: 0.032 }, 0.05)
-      .to("#nav", { opacity: 1, y: 0, duration: 0.7 }, 0.35)
-      .to(".hero [data-reveal]", { opacity: 1, y: 0, duration: 0.8, stagger: 0.08 }, 0.4);
-    heroDecode();
-  }
-
-  /* ---------------- hero: lines drift apart on scroll ---------------- */
-  if (!prefersReduced) {
-    const heroLines = document.querySelectorAll(".hero__title .hero__line");
-    if (heroLines.length === 2) {
-      const st = { trigger: "#hero", start: "top top", end: "bottom top", scrub: true };
-      gsap.to(heroLines[0], { xPercent: -7, ease: "none", scrollTrigger: st });
-      gsap.to(heroLines[1], { xPercent: 9, ease: "none", scrollTrigger: st });
-    }
-  }
-
-  if (prefersReduced) {
-    gsap.set(".hero__char", { y: 0, rotate: 0 });
-    gsap.set("#nav", { opacity: 1, y: 0 });
-    gsap.set("[data-reveal]", { opacity: 1, y: 0 });
-    heroReady = true;
-  } else if (window.__introDone) {
-    heroEntrance();
-  } else {
-    document.addEventListener("intro:done", heroEntrance, { once: true });
-  }
-
-  /* ---------------- flip word (scramble swap) ---------------- */
-  const flip = document.getElementById("flip-words");
-  if (flip && !prefersReduced) {
-    const WORDS = ["developer", "innovator", "creator", "student"];
-    let wi = 0;
-    setInterval(() => {
-      wi = (wi + 1) % WORDS.length;
-      scrambleTo(flip, WORDS[wi]);
-    }, 2600);
-  }
-
-  /* ---------------- velocity-reactive marquee ---------------- */
-  const marqueeTrack = document.querySelector(".marquee__track");
-  if (marqueeTrack && !prefersReduced) {
-    let x = 0;
-    let vel = 0;
-    let half = 0;
-
-    function measure() { half = marqueeTrack.scrollWidth / 2; }
-    measure();
-    window.addEventListener("resize", measure);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
-
-    if (lenis) {
-      lenis.on("scroll", (e) => { vel = e.velocity || 0; });
-    } else {
-      let lastY = window.scrollY;
-      window.addEventListener("scroll", () => {
-        vel = window.scrollY - lastY;
-        lastY = window.scrollY;
-      }, { passive: true });
-    }
-
-    gsap.ticker.add((time, dt) => {
-      if (!half) return;
-      const boost = gsap.utils.clamp(-900, 900, vel * 14);
-      x -= (90 + boost) * (dt / 1000);
-      x = gsap.utils.wrap(-half, 0, x);
-      gsap.set(marqueeTrack, {
-        x,
-        skewX: gsap.utils.clamp(-12, 12, -vel * 0.4),
-      });
-      vel *= 0.9;
-    });
-  }
-
-  /* ---------------- scroll reveals ---------------- */
-  if (!prefersReduced) {
-    document.querySelectorAll(".section__title").forEach((title) => {
-      gsap.to(title.querySelectorAll(".line-mask > span"), {
-        y: 0,
-        duration: 1.1,
-        stagger: 0.12,
-        ease: "power4.out",
-        scrollTrigger: { trigger: title, start: "top 82%" },
-      });
-    });
-
-    gsap.utils.toArray("[data-reveal]").filter((el) => !el.closest(".hero")).forEach((el) => {
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: { trigger: el, start: "top 88%" },
-      });
-    });
-  }
-
-  /* ---------------- about: ascii portrait hash-in reveal ---------------- */
-  const asciiEl = document.querySelector(".about__ascii");
-  if (asciiEl && !prefersReduced) {
-    const FINAL = asciiEl.textContent;
-    const POOL = "0123456789abcdef#%@1tfLGE";
-    const n = FINAL.length;
-    const totalRows = FINAL.split("\n").length;
-
-    const th = new Float32Array(n);
-    let row = 0;
-    for (let i = 0; i < n; i++) {
-      if (FINAL[i] === "\n") { row++; continue; }
-      th[i] = 0.12 + 0.88 * (0.55 * Math.random() + 0.45 * (row / totalRows));
-    }
-
-    const state = { p: 0 };
-    let lastSwap = 0;
-    function render(now) {
-      if (now - lastSwap < 30 && state.p > 0 && state.p < 1) return;
-      lastSwap = now;
-      const out = new Array(n);
-      for (let i = 0; i < n; i++) {
-        const c = FINAL[i];
-        out[i] = c === "\n" || state.p >= th[i]
-          ? c
-          : POOL[(Math.random() * POOL.length) | 0];
-      }
-      asciiEl.textContent = out.join("");
-    }
-
-    render(performance.now());
-
-    ScrollTrigger.create({
-      trigger: ".about__figure",
-      start: "top 80%",
-      once: true,
-      onEnter: () => {
-        gsap.to(state, {
-          p: 1,
-          duration: 1.7,
-          ease: "power2.inOut",
-          onUpdate: () => render(performance.now()),
-          onComplete: () => { asciiEl.textContent = FINAL; },
-        });
-      },
-    });
-  }
-
-  /* ---------------- work: horizontal scroll gallery ---------------- */
-  const workSection = document.getElementById("work");
-  const workTrack = document.getElementById("work-track");
-  const panels = gsap.utils.toArray(".panel");
-  const projectPanels = panels.filter((p) => p.dataset.project);
-  const counterEl = document.getElementById("work-counter");
-  const barFill = document.getElementById("work-bar-fill");
-  const total = projectPanels.length;
-
-  const pad2 = (n) => String(n).padStart(2, "0");
-
-  const mm = gsap.matchMedia();
-
-  mm.add("(min-width: 860px) and (prefers-reduced-motion: no-preference)", () => {
-    workSection.classList.add("is-horizontal");
-    const dist = () => workTrack.scrollWidth - window.innerWidth;
-
-    const tween = gsap.to(workTrack, {
-      x: () => -dist(),
-      ease: "none",
-      scrollTrigger: {
-        trigger: workSection,
-        start: "top top",
-        end: () => "+=" + dist(),
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate(self) {
-          const idx = Math.min(total, 1 + Math.floor(self.progress * total));
-          counterEl.textContent = pad2(idx) + " / " + pad2(total);
-          barFill.style.transform = `scaleX(${self.progress})`;
-          workSection.classList.toggle("is-scrolling", self.progress > 0.02);
-        },
-      },
-    });
-
-    projectPanels.forEach((panel) => {
-      const img = panel.querySelector(".panel__media img");
-      const num = panel.querySelector(".panel__num");
-      gsap.fromTo(img, { xPercent: -5 }, {
-        xPercent: 5,
-        ease: "none",
-        scrollTrigger: {
-          trigger: panel, containerAnimation: tween,
-          start: "left right", end: "right left", scrub: true,
-        },
-      });
-      gsap.fromTo(num, { xPercent: 40 }, {
-        xPercent: -40,
-        ease: "none",
-        scrollTrigger: {
-          trigger: panel, containerAnimation: tween,
-          start: "left right", end: "right left", scrub: true,
-        },
-      });
-    });
-
-    return () => workSection.classList.remove("is-horizontal", "is-scrolling");
+    const release=()=>{keys.delete(key);button.classList.remove('pressed');};
+    button.addEventListener('pointerup',release);button.addEventListener('pointercancel',release);button.addEventListener('lostpointercapture',release);
   });
-
-  mm.add("(max-width: 859.98px)", () => {
-    if (prefersReduced) return;
-    panels.forEach((panel) => {
-      gsap.from(panel, {
-        opacity: 0,
-        y: 60,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: { trigger: panel, start: "top 88%" },
-      });
-    });
-  });
-
-  /* ---------------- project data ---------------- */
-  const PROJECTS = {
-    synari: {
-      title: "Synari",
-      kicker: "01 — therapy practice platform",
-      img: "./assets/synari-10edb4f1.png",
-      chips: ["full-stack", "solo build", "1+ year", "real users", "ai integration"],
-      paragraphs: [
-        "Synari is a therapy practice management platform that I have been developing over the past year. I built it to help clinicians reduce the stress of documentation, scheduling, and administrative tasks that slow down their day. The project started after speaking with therapists who shared how inefficient their current tools were. I designed the entire system myself and shaped it through ongoing feedback from real users who needed something practical and reliable.",
-        "This project demonstrates my ability to build and maintain a full stack application from the ground up. Through Synari, I learned how to translate real user needs into technical decisions, create an interface that reduces cognitive load, and integrate AI responsibly within a workflow. It also reflects my experience managing a long-term project, gathering feedback, iterating on design choices, and building features through consistent testing.",
-        "Synari reflects the engineer I am becoming: someone who builds intentionally, consults with users, and focuses on creating technology that eases people's lives.",
-      ],
-      links: [{ label: "visit synari.org ↗", href: "https://synari.org/" }],
-    },
-    autoapply: {
-      title: "auto-apply",
-      kicker: "02 — local job-search pipeline",
-      img: "./assets/auto-apply.png",
-      chips: ["next.js", "claude", "playwright", "sqlite", "ats scout"],
-      paragraphs: [
-        "auto-apply is a local job-search pipeline for new-grad and internship SWE roles. It watches public GitHub job lists and company ATS boards, surfaces new postings as they appear, writes tailored cover letters and screening answers with Claude, and can auto-fill applications through Playwright.",
-        "The pipeline runs fully on your machine: ingest and scout across SimplifyJobs, Greenhouse, Lever, Ashby, HN, and more; enrich each posting with the real form questions; draft answers grounded in your profile; then apply with a headed browser. A launchd watcher and macOS notifications keep the inbox current without sending anything off-device.",
-        "It is built to be fast where it matters: delta detection so backfills stay quiet, parallel enrichment so one slow career site cannot stall the run, and a training-wheels mode that fills every field but leaves the final submit click to you.",
-      ],
-      links: [{ label: "github ↗", href: "https://github.com/gheetdufa/auto_apply" }],
-    },
-    autotrader: {
-      title: "auto-trader",
-      kicker: "03 — automated swing trading",
-      img: "./assets/auto-trader.png",
-      chips: ["python", "yfinance", "ai agents", "robinhood mcp", "risk rails"],
-      paragraphs: [
-        "auto-trader is an automated swing-trading system built around a deterministic Python engine with AI agents for review and execution. It targets Robinhood Agentic Trading with ring-fenced stock and options sleeves so neither budget can raid the other.",
-        "Daily bars feed momentum, RSI(2), and regime signals into order proposals. A reviewer agent can only veto or shrink size; an executor agent applies a news overlay, runs a hard risk validator, and only then sends fills through the Robinhood MCP. Every trade is journaled to git and pushed with phone alerts.",
-        "The stock sleeve runs a momentum core with a mean-reversion satellite and a SPY 200-day regime filter. Options stay in paper mode as call debit spreads until explicitly flipped live. Hard rails cover position caps, trailing stops, drawdown kill switches, and a whitelist so the agents cannot invent risk.",
-      ],
-      links: [{ label: "github ↗", href: "https://github.com/gheetdufa/auto-trader" }],
-    },
-    signlang: {
-      title: "SignLang Interface",
-      kicker: "04 — accessible communication",
-      img: "./assets/Translator.png",
-      chips: ["machine learning", "accessibility", "sensors", "human-centered"],
-      paragraphs: [
-        "This project began when my friend lost an arm and needed a more accessible way to communicate using sign language. I wanted to help them regain some independence, so I started building an interface that could translate one-handed inputs into digital gestures. I experimented with sensors, machine learning models, and lightweight interaction patterns to create something that felt natural. The project's purpose was personal, and every design choice came from trying to meet a real need.",
-        "It shows how I approach engineering with empathy, careful attention, and direct communication with the person who will use the final product. I learned how to adapt tools to a single user's daily challenges, adjust design features based on comfort, and refine prototypes through consistent testing and feedback. It pushed me to think about accessibility not as a feature but as a core requirement.",
-        "This project captures the kind of work I want to continue doing: work that matters to someone's life and reflects both technical effort and care.",
-      ],
-      links: [{ label: "view on github ↗", href: "https://github.com/ukataria/Bitcamp2024/tree/main" }],
-    },
-    audit: {
-      title: "Audit.AI",
-      kicker: "05 — ai-art detection",
-      img: "./assets/project-2.png",
-      chips: ["chrome extension", "yolo pipeline", "team project", "hackathon"],
-      paragraphs: [
-        "Audit AI is a Chrome extension created to help users identify whether digital artwork is real or AI-generated. The idea came from seeing confusion and controversy surrounding the authenticity of online art. My team and I wanted to give everyday users a quick way to check the origins of what they were seeing. Audit AI analyzes images directly within the browser and provides an instant assessment, making it easier for people to navigate an online space where AI-generated content is becoming harder to distinguish.",
-        "Building Audit AI required integrating a YOLO-based image recognition pipeline with a smooth frontend experience that fit naturally into the browser environment. The project challenged us to optimize performance, handle diverse image formats, and create a tool that felt fast and reliable. It demonstrates my ability to connect technical components into a cohesive product and to iterate on challenges such as latency, accuracy, and user experience.",
-        "Audit AI represents the kind of builder I aim to be: someone who takes initiative and creates tools that give people clarity in a changing digital world.",
-      ],
-      links: [
-        { label: "devpost ↗", href: "https://devpost.com/software/audit-ai" },
-        { label: "github ↗", href: "https://github.com/ukataria/Bitcamp2024/tree/main" },
-      ],
-    },
-    rant: {
-      title: "Rant.AI",
-      kicker: "06 — ai journaling",
-      img: "./assets/project-3.jpg",
-      chips: ["ai", "journaling", "wellbeing"],
-      paragraphs: [
-        "Rant.AI is an AI-powered journaling application that helps users express their thoughts, feelings, and experiences through intelligent writing assistance. The app provides a safe space for users to \"rant\" about their day, with AI-powered insights and reflection tools to help users understand their emotions and thoughts better.",
-      ],
-      links: [{ label: "view on github ↗", href: "https://github.com/gheetdufa/journal_app-1" }],
-    },
-    tutorwiz: {
-      title: "tutorWiz",
-      kicker: "07 — intelligent tutoring",
-      img: "./assets/tutorWiz.png",
-      chips: ["edtech", "ai assistance", "adaptive learning"],
-      paragraphs: [
-        "tutorWiz is an intelligent tutoring platform that connects students with tutors and provides AI-powered learning assistance. The platform offers personalized tutoring sessions, adaptive learning paths, and comprehensive study resources to help students excel in their academic pursuits.",
-      ],
-      links: [
-        { label: "devpost ↗", href: "https://devpost.com/software/tutorwiz" },
-        { label: "github ↗", href: "https://github.com/suhas-kavuri/WizardTutor" },
-      ],
-    },
-    asktestudo: {
-      title: "askTestudo",
-      kicker: "08 — course registration assistant",
-      img: "./assets/askTestudo.png",
-      chips: ["chatbot", "hoyahacks", "umd"],
-      paragraphs: [
-        "askTestudo is an AI-powered assistant designed to help University of Maryland students navigate the Testudo course registration system. Built during HoyaHacks, this intelligent chatbot answers questions about courses, schedules, prerequisites, and registration processes, making it easier for students to plan their academic journey.",
-      ],
-      links: [
-        { label: "asktestudo.co ↗", href: "https://asktestudo.co/" },
-        { label: "github ↗", href: "https://github.com/gheetdufa/HoyaHacksAskTestudo" },
-      ],
-    },
+  giveTreat.onclick=()=>activateStation('treat');
+  interact.onclick=()=>{if(world.pullup.busy){activateStation('finish-set');return;}if(world.seated)activateStation('stand');else if(nearby)activateStation(nearby);};
+  document.querySelector('#reset').onclick=()=>{
+    if(roomTransition||world.gallery.busy||hasPanel())return;
+    world.stand();const start=ROOMS[currentRoom].spawn;world.player.position.set(start.x,.06,start.z);clearMovement();angle=0;toast('Back to '+ROOMS[currentRoom].title.toLowerCase()+'.');
   };
-
-  /* ---------------- project overlay ---------------- */
-  const overlay = document.getElementById("project-overlay");
-  const overlayInner = document.getElementById("overlay-inner");
-  const overlayContent = document.getElementById("overlay-content");
-  const overlayClose = document.getElementById("overlay-close");
-  let lastFocused = null;
-
-  gsap.set(overlayInner, { yPercent: 100 });
-
-  function renderProject(key) {
-    const p = PROJECTS[key];
-    if (!p) return;
-    overlayContent.innerHTML = `
-      <p class="p-detail__kicker">${p.kicker}</p>
-      <h2 class="p-detail__title">${p.title}</h2>
-      <div class="p-detail__meta">${p.chips.map((c) => `<span class="p-detail__chip">${c}</span>`).join("")}</div>
-      <img class="p-detail__img" src="${p.img}" alt="${p.title}" />
-      <div class="p-detail__body">${p.paragraphs.map((t) => `<p>${t}</p>`).join("")}</div>
-      <div class="p-detail__links">
-        ${p.links.map((l) => `<a class="btn btn--solid" href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join("")}
-      </div>`;
+  function updateLightingUI(evening){
+    document.body.classList.toggle('evening',evening);
+    const b=document.querySelector('#lighting');b.setAttribute('aria-pressed',String(evening));b.setAttribute('aria-label',evening?'Switch to daylight':'Switch to evening light');
   }
-
-  function openOverlay(key) {
-    if (!PROJECTS[key]) return;
-    renderProject(key);
-    lastFocused = document.activeElement;
-    overlay.classList.add("is-open");
-    overlay.setAttribute("aria-hidden", "false");
-    document.documentElement.classList.add("overlay-open");
-    if (lenis) lenis.stop();
-    overlayInner.scrollTop = 0;
-    gsap.fromTo(overlayInner,
-      { yPercent: 100 },
-      { yPercent: 0, duration: prefersReduced ? 0 : 0.85, ease: "power4.inOut" });
-    if (!prefersReduced) {
-      gsap.from(overlayContent.children, {
-        opacity: 0, y: 40, duration: 0.7, stagger: 0.07, delay: 0.4, ease: "power3.out",
-      });
+  document.querySelector('#lighting').onclick=()=>{
+    if(roomTransition||world.gallery.busy||hasPanel())return;
+    updateLightingUI(world.toggleLight());
+  };
+  let lastLocalMinute='';
+  function syncLocalTime(){const date=new Date(),minute=`${Math.floor(date.getTime()/60000)}:${date.getTimezoneOffset()}`;if(minute!==lastLocalMinute){lastLocalMinute=minute;updateLightingUI(world.setTime(date));}}
+  syncLocalTime();
+  window.addEventListener('resize',()=>world.resize());
+  let last=performance.now();
+  function frame(now){
+    requestAnimationFrame(frame);const frameDt=Math.max(0,(now-last)/1000),dt=Math.min(frameDt,.045);last=now;if(document.hidden)return;
+    syncLocalTime();
+    advanceRoomChange(dt);
+    let dx=0,dz=0;
+    const room=ROOMS[currentRoom],pos=world.player.position;
+    if(!hasPanel()&&!roomTransition&&!world.gallery.busy&&!world.seated){
+      const horizontal=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0);
+      const vertical=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0);
+      if(horizontal||vertical){
+        dx=horizontal*.759+vertical*.651;dz=-horizontal*.651+vertical*.759;
+        const n=Math.hypot(dx,dz);dx=dx/n*2.3*dt;dz=dz/n*2.3*dt;
+      }else if(path.length){
+        const target=path[0],dist=Math.hypot(target.x-pos.x,target.z-pos.z);
+        if(dist<.04){
+          path.shift();
+          if(!path.length){world.marker.visible=false;const id=pending;pending=null;if(id){if(room.stations[id]?.type==='door')beginRoomChange(room.stations[id].destination);else if(room.stations[id]?.type!=='gallery')activateStation(id);}}
+        }else{const step=Math.min(2.5*dt,dist);dx=(target.x-pos.x)/dist*step;dz=(target.z-pos.z)/dist*step;}
+      }
     }
-    overlayClose.focus();
+    const next=world.seated||world.desk.busy||world.bed.busy||world.library.busy||world.pullup.busy||world.interactingWithZuko?pos:moveWithCollisions(pos,dx,dz,room.obstacles);
+    const moving=Math.hypot(next.x-pos.x,next.z-pos.z)>.0001;
+    if(moving)angle=Math.atan2(next.x-pos.x,next.z-pos.z);pos.x=next.x;pos.z=next.z;
+    const destination=doorDestination(currentRoom,pos);
+    if(destination&&!hasPanel()&&!roomTransition&&!world.gallery.busy&&!world.seated)beginRoomChange(destination);
+    nearby=null;let nearest=1.0;
+    for(const [id,s] of Object.entries(room.stations)){const d=interactionDistance(s,pos);if(d<nearest){nearby=id;nearest=d;}}
+    if(world.zuko&&!world.zuko.jumping&&Math.hypot(pos.x-world.zuko.root.position.x,pos.z-world.zuko.root.position.z)<Math.min(nearest,.95))nearby='zuko';
+    if(world.seated)nearby='stand';
+    const nearbyStation=nearby==='stand'?{shortLabel:'Stand up',label:'Stand up from the couch'}:nearby==='zuko'?{shortLabel:'Pet Zuko',label:'Pet Zuko the dog'}:room.stations[nearby];
+    world.gallery.setNearby(!hasPanel()&&!roomTransition&&!world.gallery.busy&&room.stations[nearby]?.type==='gallery'?room.stations[nearby].galleryGroup:null);
+    interact.hidden=!nearby||hasPanel()||Boolean(roomTransition)||world.gallery.busy;
+    giveTreat.hidden=!world.zuko||world.zuko.jumping||hasPanel()||Boolean(roomTransition)||world.gallery.busy||Math.hypot(pos.x-world.zuko.root.position.x,pos.z-world.zuko.root.position.z)>1.15;
+    if(nearbyStation){interact.querySelector('span').textContent=nearbyStation.shortLabel;interact.setAttribute('aria-label',nearbyStation.label);}
+    if(world.pullup.busy){interact.hidden=false;interact.querySelector('span').textContent='Finish set';interact.setAttribute('aria-label','Finish pull-ups and return to the floor');}
+    for(const b of hotspots){
+      const p=world.project(room.stations[b.dataset.spot].anchor),width=Math.max(b.offsetWidth,b.querySelector('.spot-label').offsetWidth);
+      const x=Math.max(width/2+8,Math.min(innerWidth-width/2-8,p.x));
+      b.style.transform=`translate(${x}px,${p.y}px) translate(-50%,-50%)`;
+      const hidden=hasPanel()||Boolean(roomTransition)||world.gallery.busy;
+      b.style.opacity=hidden?'0':'1';b.inert=hidden;b.classList.toggle('active',b.dataset.spot===nearby);
+    }
+    world.render(dt,moving,angle,reduced,frameDt);
+    galleryUI.update();deskUI.update(frameDt,reduced);bedUI.update();roomPanels.update();introUI.update();
   }
-
-  function closeOverlay() {
-    gsap.to(overlayInner, {
-      yPercent: 100,
-      duration: prefersReduced ? 0 : 0.65,
-      ease: "power4.inOut",
-      onComplete: () => {
-        overlay.classList.remove("is-open");
-        overlay.setAttribute("aria-hidden", "true");
-        document.documentElement.classList.remove("overlay-open");
-        if (lenis) lenis.start();
-        if (lastFocused) lastFocused.focus();
-      },
-    });
-  }
-
-  overlayInner.addEventListener("wheel", (e) => e.stopPropagation(), { passive: true });
-  overlayInner.addEventListener("touchmove", (e) => e.stopPropagation(), { passive: true });
-
-  workTrack.addEventListener("click", (e) => {
-    const panel = e.target.closest(".panel");
-    if (panel && panel.dataset.project) openOverlay(panel.dataset.project);
-  });
-  overlayClose.addEventListener("click", closeOverlay);
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && overlay.classList.contains("is-open")) closeOverlay();
-  });
-
-  /* ---------------- contact email char wave ---------------- */
-  const email = document.querySelector(".contact__email");
-  const emailText = email && email.querySelector(".contact__email-text");
-  if (email && emailText && finePointer && !prefersReduced) {
-    emailText.innerHTML = emailText.textContent.split("").map(
-      (ch) => `<span class="eml-char">${ch}</span>`
-    ).join("");
-    const chars = emailText.querySelectorAll(".eml-char");
-    email.addEventListener("mouseenter", () => {
-      gsap.fromTo(chars, { y: 0 }, {
-        y: -12, duration: 0.22, stagger: 0.014, ease: "power2.out", yoyo: true, repeat: 1,
-      });
-    });
-  }
-})();
+  requestAnimationFrame(frame);
+  introUI.play();
+}

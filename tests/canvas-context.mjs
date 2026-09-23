@@ -1,0 +1,1 @@
+export function canvasContext(){return new Proxy({measureText(text){return {width:text.length*16};},createLinearGradient(){return {addColorStop(){}};}},{get(object,key){return object[key]??(()=>{});}});}

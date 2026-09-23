@@ -1,0 +1,10 @@
+// Primary sources; these links open the actual papers and authors' book pages.
+export const READING_LIST = [
+  {title:'Distilling the Knowledge in a Neural Network',spine:'DISTILLATION',author:'Hinton · Vinyals · Dean',year:'2015',category:'Distillation',color:'#344a68',url:'https://arxiv.org/abs/1503.02531',description:'Teaching a smaller student network with the soft predictions of a larger teacher.'},
+  {title:'DistilBERT',spine:'DISTILBERT',author:'Sanh · Debut · Chaumond · Wolf',year:'2019',category:'Distillation',color:'#738c83',url:'https://arxiv.org/abs/1910.01108',description:'A distilled language model designed to be smaller, faster, and lighter.'},
+  {title:'LoRA: Low-Rank Adaptation of Large Language Models',spine:'LoRA',author:'Hu et al.',year:'2021',category:'Fine-tuning',color:'#bd704d',url:'https://arxiv.org/abs/2106.09685',description:'Adapt a language model by training compact, low-rank updates while freezing its original weights.'},
+  {title:'QLoRA: Efficient Finetuning of Quantized LLMs',spine:'QLoRA',author:'Dettmers et al.',year:'2023',category:'Fine-tuning',color:'#86658d',url:'https://arxiv.org/abs/2305.14314',description:'Combine low-rank adapters with a quantized base model to reduce fine-tuning memory needs.'},
+  {title:'Training language models to follow instructions with human feedback',spine:'HUMAN FEEDBACK',author:'Ouyang et al.',year:'2022',category:'Fine-tuning',color:'#567f8e',url:'https://arxiv.org/abs/2203.02155',description:'Instruction tuning and human preferences as tools for shaping model behavior.'},
+  {title:'The Mom Test',spine:'THE MOM TEST',author:'Rob Fitzpatrick',year:'Book',category:'Entrepreneurship',color:'#c86857',url:'https://www.momtestbook.com/',description:'Ask about real problems and past behavior to have more useful customer conversations.'},
+  {title:'The Lean Startup',spine:'THE LEAN STARTUP',author:'Eric Ries',year:'Book',category:'Entrepreneurship',color:'#b09b56',url:'https://theleanstartup.com/book',description:'Test assumptions, learn from customers, and use short build–measure–learn cycles.'},
+];
